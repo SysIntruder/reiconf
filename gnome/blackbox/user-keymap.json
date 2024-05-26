@@ -1,0 +1,44 @@
+{
+  "keymap" : {
+    "win.new_tab" : [],
+    "win.zoom-in" : [
+      "<Shift><Control>plus"
+    ],
+    "win.rename-tab" : [],
+    "win.switch-tab-1" : [],
+    "win.zoom-out" : [
+      "<Shift><Control>underscore"
+    ],
+    "win.edit_preferences" : [
+      "<Control>comma"
+    ],
+    "win.switch-tab-2" : [],
+    "win.search" : [],
+    "win.switch-tab-3" : [],
+    "win.fullscreen" : [
+      "F11"
+    ],
+    "app.new-window" : [],
+    "win.switch-tab-4" : [],
+    "app.focus-previous-tab" : [],
+    "win.switch-tab-5" : [],
+    "win.switch-tab-6" : [],
+    "win.paste" : [
+      "<Shift><Control>v"
+    ],
+    "win.zoom-default" : [
+      "<Shift><Control>BackSpace"
+    ],
+    "win.switch-tab-7" : [],
+    "win.switch-tab-8" : [],
+    "win.show-help-overlay" : [],
+    "win.switch-tab-9" : [],
+    "win.switch-tab-last" : [],
+    "win.copy" : [
+      "<Shift><Control>c"
+    ],
+    "win.close-tab" : [],
+    "app.focus-next-tab" : [],
+    "win.switch-headerbar-mode" : []
+  }
+}
