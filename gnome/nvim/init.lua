@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("options")
 require("mappings")
--- require("netrw")
+require("netrw")
 require("lazy").setup("plugins", {
 	ui = {
 		border = "rounded",
