@@ -14,7 +14,7 @@ o.laststatus = 3
 o.showmode = false
 
 -- Clipboard
-o.clipboard = "unnamed,unnamedplus"
+o.clipboard = "unnamedplus"
 
 -- Cursorline
 o.cursorline = true
@@ -70,6 +70,8 @@ o.foldlevel = 99
 o.foldnestmax = 4
 
 -- Netrw settings
+-- g.netrw_winsize = 100
+g.netrw_browse_split = 0
 g.netrw_keepdir = 1
 g.netrw_localcopydircmd = "cp -r"
 

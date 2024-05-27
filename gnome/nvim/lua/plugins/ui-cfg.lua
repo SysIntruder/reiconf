@@ -82,6 +82,9 @@ return {
 							symbols = {
 								alternate_file = "",
 							},
+							filetype_names = {
+								netrw = "Netrw",
+							},
 						},
 					},
 					lualine_c = {},
@@ -115,6 +118,9 @@ return {
 							icons_enabled = false,
 							symbols = {
 								alternate_file = "",
+							},
+							filetype_names = {
+								netrw = "Netrw",
 							},
 						},
 					},

@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<C-n>", "<cmd>Lexplore<CR>", { noremap = true, desc = "Open netrw" })
+vim.keymap.set("n", "<C-n>", "<cmd>Explore<CR>", { noremap = true, desc = "Open netrw" })
 
 vim.cmd([[
 augroup netrw_mapping
@@ -9,7 +9,7 @@ augroup END
 function! NetrwMapping()
     nmap <buffer> l <CR>
     nmap <buffer> h -^
-    nmap <buffer> <C-n> :Lexplore<CR>
+    nmap <buffer> <C-n> :bd!<CR>
 
     nmap <buffer> a %:w<CR>:buffer #<CR>
     nmap <buffer> y mc
