@@ -1,8 +1,5 @@
 return {
 	{
-		"nvim-telescope/telescope-ui-select.nvim",
-	},
-	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -52,11 +49,6 @@ return {
 						n = { ["<c-d>"] = require("telescope.actions").delete_buffer },
 					},
 				},
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
-				},
 				pickers = {
 					buffers = {
 						initial_mode = "normal",
@@ -80,8 +72,6 @@ return {
 
 			vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Telescope find word" })
 			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Telescope buffer fzf" })
-
-			require("telescope").load_extension("ui-select")
 		end,
 	},
 }

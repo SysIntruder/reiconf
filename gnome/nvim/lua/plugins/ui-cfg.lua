@@ -56,14 +56,6 @@ return {
 		end,
 	},
 
-	-- UI
-	{
-		"stevearc/dressing.nvim",
-		config = function()
-			require("dressing").setup()
-		end,
-	},
-
 	-- Statusline
 	{
 		"nvim-lualine/lualine.nvim",
@@ -105,14 +97,14 @@ return {
 						},
 						"diff",
 					},
-					lualine_y = {},
-					lualine_z = {
+					lualine_y = {
 						{
 							"branch",
 							icons_enabled = false,
 							draw_empty = true,
 						},
 					},
+					lualine_z = {},
 				},
 				inactive_sections = {
 					lualine_a = {},
@@ -127,14 +119,14 @@ return {
 						},
 					},
 					lualine_x = {},
-					lualine_y = {},
-					lualine_z = {
+					lualine_y = {
 						{
 							"branch",
 							icons_enabled = false,
 							draw_empty = true,
 						},
 					},
+					lualine_z = {},
 				},
 				tabline = {},
 			})

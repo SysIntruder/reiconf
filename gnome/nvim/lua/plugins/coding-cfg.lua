@@ -5,6 +5,11 @@ return {
 		event = "BufReadPost",
 		config = function()
 			require("flash").setup({
+				modes = {
+					char = {
+						enabled = false,
+					},
+				},
 				prompt = {
 					enabled = false,
 				},
@@ -18,28 +23,6 @@ return {
 			vim.keymap.set("o", "S", function()
 				flash.remote()
 			end, { desc = "Flash remote" })
-		end,
-	},
-
-	-- Fold
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = "kevinhwang91/promise-async",
-		event = "BufReadPost",
-		config = function()
-			require("ufo").setup({
-				provider_seleclor = function(_, ft, _)
-					local lspWithOutFolding = { "markdown", "sh", "css", "html", "python" }
-					if vim.tbl_contains(lspWithOutFolding, ft) then
-						return { "treesitter", "indent" }
-					end
-					return { "lsp", "indent" }
-				end,
-				close_fold_kinds_for_ft = {
-					default = { "comment" },
-				},
-				open_fold_hl_timeout = 800,
-			})
 		end,
 	},
 

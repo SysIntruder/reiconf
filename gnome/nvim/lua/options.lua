@@ -62,9 +62,16 @@ o.updatetime = 250
 opt.whichwrap:append("<>[]hl")
 
 -- Fold settings
-o.foldlevel = 99
--- o.levelstart = 99
 o.foldenable = true
+o.foldmethod = "expr"
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+o.foldtext = ""
+o.foldlevel = 99
+o.foldnestmax = 4
+
+-- Netrw settings
+g.netrw_keepdir = 0
+g.netrw_localcopydircmd = "cp -r"
 
 -- Disable provider
 g["loaded_node_provider"] = 0

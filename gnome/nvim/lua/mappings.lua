@@ -11,9 +11,6 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus top window", remap = true
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window", remap = true })
 
 -- Move line
-vim.keymap.set("n", "J", "<cmd>m .+1<cr>==", { desc = "Move line down" })
-vim.keymap.set("n", "K", "<cmd>m .-2<cr>==", { desc = "Move line up" })
-
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
 
