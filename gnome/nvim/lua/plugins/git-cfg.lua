@@ -19,9 +19,9 @@ return {
 						return { buffer = bufnr, desc = desc }
 					end
 
-					vim.keymap.set("n", "<leader>rh", gs.reset_hunk, opts("Reset Hunk"))
-					vim.keymap.set("n", "<leader>ph", gs.preview_hunk, opts("Preview Hunk"))
-					vim.keymap.set("n", "<leader>gb", gs.blame_line, opts("Blame Line"))
+					vim.keymap.set("n", "<leader>hr", gs.reset_hunk, opts("Reset Hunk"))
+					vim.keymap.set("n", "<leader>hp", gs.preview_hunk, opts("Preview Hunk"))
+					vim.keymap.set("n", "<leader>hb", gs.blame_line, opts("Blame Line"))
 				end,
 			})
 		end,

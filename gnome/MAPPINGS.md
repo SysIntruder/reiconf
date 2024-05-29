@@ -170,35 +170,44 @@ _Most common used neovim binding_
 ------------------------------------------------------
 | q          | start/stop record macro               |
 | @          | apply recorded macro                  |
+| zM         | close all fold                        |
+| zR         | open all fold                         |
+| za         | toggle fold                           |
+| gcc        | toggle comment                        |
 ------------------------------------------------------
 | Custom                                             |
 ------------------------------------------------------
 | ESC        | remove search highlight               |
+| -          | open netrw                            |
 | C-Up       | new empty buffer                      |
 | C-Down     | close buffer                          |
 | C-Left     | prev buffer                           |
 | C-Right    | next buffer                           |
-| C-h        | focus window left                     |
-| C-j        | focus window down                     |
-| C-k        | focus window up                       |
-| C-l        | focus window right                    |
-| C-q        | close window                          |
-| go         | add newline below                     |
-| gO         | add newline above                     |
-| leader q   | open quickfix                         |
-| ]q         | next quickfix                         |
-| [q         | prev quickfix                         |
-| K          | move line up                          |
-| J          | move line down                        |
+| U          | redo                                  |
+| H          | ^ (bol)                               |
+| J          | } (next newline)                      |
+| K          | { (prev newline)                      |
+| L          | $ (eol)                               |
+| !          | ~ (toggle case)                       |
+| =          | find word under cursor                |
+| X          | replace word under cursor             |
+| M          | ` (goto mark)                         |
 ------------------------------------------------------
 | Plugins                                            |
+------------------------------------------------------
+| Tmux                                               |
+------------------------------------------------------
+| C-h        | focus window left/tmux pane left      |
+| C-j        | focus window down/tmux pane down      |
+| C-k        | focus window up/tmux pane up          |
+| C-l        | focus window right/tmux pane right    |
 ------------------------------------------------------
 | LSP                                                |
 ------------------------------------------------------
 | gd         | goto definition                       |
-| leader ra  | rename symbol                         |
-| leader ca  | code action                           |
-| leader d   | diagnostics                           |
+| gr         | rename symbol                         |
+| ga         | code action                           |
+| gD         | diagnostics                           |
 | C-w d      | diagnostics                           |
 | ]d         | next diagnostic                       |
 | [d         | prev diagnostic                       |
@@ -209,13 +218,13 @@ _Most common used neovim binding_
 | leader fo  | recent files                          |
 | leader fw  | find word                             |
 | leader fz  | buffer fuzzy find                     |
-| leader b   | list buffers                          |
+| leader fb  | list buffers                          |
 | leader fd  | list lsp diagnostics                  |
 | leader fc  | list incoming fn call                 |
 | leader fC  | list outgoing fn call                 |
 | leader fs  | list symbols                          |
 | leader fS  | list symbols (treesitter)             |
-| leader ch  | keymap cheatsheet                     |
+| leader fk  | keymap cheatsheet                     |
 ------------------------------------------------------
 | Golang                                             |
 ------------------------------------------------------
@@ -229,17 +238,13 @@ _Most common used neovim binding_
 | s          | jump                                  |
 | S          | jump, do operation, then return       |
 ------------------------------------------------------
-| Oil                                                |
-------------------------------------------------------
-| -          | open oil                              |
-------------------------------------------------------
 | Undotree                                           |
 ------------------------------------------------------
 | leader u   | toggle undotree                       |
 ------------------------------------------------------
 | Git                                                |
 ------------------------------------------------------
-| leader rh  | reset hunk                            |
-| leader ph  | preview hunk                          |
-| leader gb  | git blame                             |
+| leader hr  | reset hunk                            |
+| leader hp  | preview hunk                          |
+| leader hb  | git blame                             |
 ------------------------------------------------------

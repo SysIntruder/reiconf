@@ -1,18 +1,38 @@
 -- Better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-
--- Split navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus left window", remap = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus bottom window", remap = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus top window", remap = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window", remap = true })
 
 -- Move line
-vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
-vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true })
+
+-- Remap nav
+vim.keymap.set("n", "H", "^")
+vim.keymap.set("n", "J", "}")
+vim.keymap.set("n", "K", "{")
+vim.keymap.set("n", "L", "$")
+
+-- Indenting
+vim.keymap.set("v", "<", "<gv", { desc = "Increase indent" })
+vim.keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
+
+-- Clear search
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<CR><esc>", { desc = "Escape and Clear hlsearch" })
+
+-- Toggle case
+vim.keymap.set({ "n", "v" }, "!", "~<Left>", { desc = "Toggle case" })
+
+-- Redo
+vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
+
+-- Goto mark
+vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
+
+-- Search word under cursor
+vim.keymap.set("n", "=", '":%s/".expand("<cword>")."//gn<CR>``"', { desc = "Find word under cursor", expr = true })
+
+-- Replace word under cursor
+vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor" })
 
 -- Insert mode quit with C-c
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -23,25 +43,74 @@ vim.keymap.set("n", "<C-Down>", "<cmd>confirm bd<CR>", { desc = "Close buffer" }
 vim.keymap.set("n", "<C-Left>", "<cmd>bp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<C-Right>", "<cmd>bn<CR>", { desc = "Next buffer" })
 
--- Quickfix
-vim.keymap.set("n", "<leader>q", "<cmd>copen<CR>", { desc = "Quickfix List" })
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>", { desc = "Prev quickfix" })
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>", { desc = "Next quickfix" })
+-- Autopair
+local function between_pairs()
+	local l = vim.fn.getline(".")
+	local c = vim.fn.col(".")
+	local p = l:sub(c - 1, c - 1)
+	local n = l:sub(c, c)
+	local pairs = {
+		["{"] = "}",
+		["["] = "]",
+		["("] = ")",
+		['"'] = '"',
+		["'"] = "'",
+		["`"] = "`",
+	}
 
--- Clear search
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+	return pairs[p] == n
+end
 
--- Indenting
-vim.keymap.set("v", "<", "<gv", { desc = "Increase indent" })
-vim.keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
+function _G.pair_newline()
+	if between_pairs() then
+		return "<CR><Tab><CR><Esc>kA"
+	else
+		return "<CR>"
+	end
+end
+vim.keymap.set(
+	"i",
+	"<CR>",
+	"v:lua.pair_newline()",
+	{ desc = "Auto indent newline inside pair", expr = true, noremap = true, silent = true }
+)
 
--- Search word
-vim.keymap.set("n", "*", "*N", { desc = "Search forward word under cursor" })
-vim.keymap.set("n", "#", "#n", { desc = "Search backward word under cursor" })
+function _G.skip_pair(char)
+	local l = vim.fn.getline(".")
+	local c = vim.fn.col(".")
+	local n = l:sub(c, c)
 
--- Add newline
-vim.keymap.set("n", "go", "<cmd>call append(line('.'), repeat([''], v:count1))<CR>", { desc = "Add newline below" })
-vim.keymap.set("n", "gO", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Add newline above" })
+	if n == char then
+		return "<Right>"
+	else
+		return char
+	end
+end
+
+function _G.autopair_quote(char)
+	local l = vim.fn.getline(".")
+	local c = vim.fn.col(".")
+	local n = l:sub(c, c)
+
+	if n == char then
+		return "<Right>"
+	else
+		return char .. char .. "<Left>"
+	end
+end
+
+vim.keymap.set("i", "{", "{}<Left>", { desc = "Autopair {" })
+vim.keymap.set("i", "}", "v:lua.skip_pair('}')", { desc = "Skip pair }", expr = true })
+
+vim.keymap.set("i", "[", "[]<Left>", { desc = "Autopair [" })
+vim.keymap.set("i", "]", "v:lua.skip_pair(']')", { desc = "Skip pair ]", expr = true })
+
+vim.keymap.set("i", "(", "()<Left>", { desc = "Autopair (" })
+vim.keymap.set("i", ")", "v:lua.skip_pair(')')", { desc = "Skip pair )", expr = true })
+
+vim.keymap.set("i", '"', 'v:lua.autopair_quote("\\"")', { desc = 'Autopair "', expr = true })
+vim.keymap.set("i", "'", 'v:lua.autopair_quote("\'")', { desc = "Autopair '", expr = true })
+vim.keymap.set("i", "`", "v:lua.autopair_quote('`')", { desc = "Autopair `", expr = true })
 
 -- GIT GUD
 for _, mode in pairs({ "n", "i", "v", "x" }) do
@@ -53,6 +122,6 @@ for _, mode in pairs({ "n", "i", "v", "x" }) do
 	end
 end
 
--- remove mapping
+-- Remove mapping
 vim.keymap.set("i", "<M-e>", "<nop>")
 vim.keymap.set("n", "Q", "<nop>")

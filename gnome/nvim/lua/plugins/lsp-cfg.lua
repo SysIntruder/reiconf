@@ -112,10 +112,11 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Go to definition" })
-			vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { desc = "LSP Rename" })
-			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "LSP Diagnostic" })
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP go to definition" })
+			vim.keymap.set("n", "gk", vim.lsp.buf.hover, { desc = "LSP hover information" })
+			vim.keymap.set("n", "gD", vim.diagnostic.open_float, { desc = "LSP diagnostic" })
+			vim.keymap.set("n", "gr", vim.lsp.buf.rename, { desc = "LSP rename" })
+			vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, { desc = "LSP code action" })
 		end,
 	},
 }
