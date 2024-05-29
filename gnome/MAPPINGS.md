@@ -189,7 +189,6 @@ _Most common used neovim binding_
 | K          | { (prev newline)                      |
 | L          | $ (eol)                               |
 | !          | ~ (toggle case)                       |
-| =          | find word under cursor                |
 | X          | replace word under cursor             |
 | M          | ` (goto mark)                         |
 ------------------------------------------------------

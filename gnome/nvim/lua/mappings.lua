@@ -28,11 +28,8 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 -- Goto mark
 vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
 
--- Search word under cursor
-vim.keymap.set("n", "=", '":%s/".expand("<cword>")."//gn<CR>``"', { desc = "Find word under cursor", expr = true })
-
 -- Replace word under cursor
-vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor" })
+vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor", expr = true })
 
 -- Insert mode quit with C-c
 vim.keymap.set("i", "<C-c>", "<Esc>")
