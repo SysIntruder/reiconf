@@ -59,7 +59,7 @@ GIT_PS1_SHOWUPSTREAM='auto'
 setopt PROMPT_SUBST
 
 # Text only
-PROMPT='${vim_mode} %F{blue}%2~%f $(__git_ps1 "%s") '
+PROMPT='${vim_mode} %F{blue}%2~%f$(__git_ps1 " %s") '
 
 # With lines
 # PROMPT='${vim_mode}[%F{blue}%2~%f]$(__git_ps1 "─[%s]") '

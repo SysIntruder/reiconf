@@ -29,7 +29,7 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
 
 -- Replace word under cursor
-vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor", expr = true })
+vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor" })
 
 -- Insert mode quit with C-c
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -39,6 +39,9 @@ vim.keymap.set("n", "<C-Up>", "<cmd>enew<CR>", { desc = "New buffer" })
 vim.keymap.set("n", "<C-Down>", "<cmd>confirm bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<C-Left>", "<cmd>bp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<C-Right>", "<cmd>bn<CR>", { desc = "Next buffer" })
+
+vim.keymap.set("n", "[b", "<cmd>bp<CR>", { desc = "Prev buffer" })
+vim.keymap.set("n", "]b", "<cmd>bn<CR>", { desc = "Next buffer" })
 
 -- Autopair
 local function between_pairs()
@@ -70,6 +73,20 @@ vim.keymap.set(
 	"<CR>",
 	"v:lua.pair_newline()",
 	{ desc = "Auto indent newline inside pair", expr = true, noremap = true, silent = true }
+)
+
+function _G.backspace_empty_pair()
+	if between_pairs() then
+		return "<BS><Right><BS>"
+	else
+		return "<BS>"
+	end
+end
+vim.keymap.set(
+	"i",
+	"<BS>",
+	"v:lua.backspace_empty_pair()",
+	{ desc = "Auto delete empty pair", expr = true, noremap = true, silent = true }
 )
 
 function _G.skip_pair(char)
