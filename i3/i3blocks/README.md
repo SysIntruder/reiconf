@@ -1,0 +1,10 @@
+# Required app
+- awk
+- sysstat
+- pulseaudio-pipewire
+- playerctl
+- cat
+- acpilight
+- alsa-utils
+- acpi
+- ip

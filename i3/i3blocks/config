@@ -1,0 +1,76 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+separator_block_width=25
+markup=pango
+
+[player]
+command=./player.sh
+interval=1
+signal=10
+
+[bandwidth]
+command=./bandwidth.sh
+interval=2
+
+[cpu]
+command=./cpu.sh
+label=CPU 
+interval=2
+
+[mem]
+command=./mem.sh
+label=MEM 
+interval=2
+
+[disk]
+command=./disk.sh
+label=DU 
+interval=2
+
+[vol]
+command=./vol.sh
+label=VOL 
+interval=10
+signal=10
+
+[mic]
+command=./mic.sh
+label=MIC 
+interval=10
+signal=10
+
+[bri]
+command=./bri.sh
+label=BRI 
+interval=once
+signal=10
+
+[bat]
+command=./bat.sh
+label=BAT 
+interval=10
+
+[time]
+command=date '+%a %d %b %H:%M'
+interval=60
