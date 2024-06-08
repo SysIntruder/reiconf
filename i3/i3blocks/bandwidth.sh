@@ -1,5 +1,9 @@
 #!/bin/sh
 
+case $BLOCK_BUTTON in
+  1) $(i3-msg exec 'st -T "nmtui" -e nmtui') ;;
+esac
+
 IFACE=$(ip r | awk '/^default/ { print $5 }' 2>/dev/null)
 
 if [ -z "$IFACE" ]; then
