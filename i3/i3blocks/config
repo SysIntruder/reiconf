@@ -46,18 +46,18 @@ interval=2
 [disk]
 command=./disk.sh
 label=DU 
-interval=2
+interval=10
 
 [vol]
 command=./vol.sh
 label=VOL 
-interval=10
+interval=once
 signal=10
 
 [mic]
 command=./mic.sh
 label=MIC 
-interval=10
+interval=once
 signal=10
 
 [bri]

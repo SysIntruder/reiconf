@@ -12,6 +12,10 @@
 set $mod Mod4
 
 font pango:JetBrainsMono Nerd Font 9
+floating_modifier $mod
+focus_follows_mouse no
+tiling_drag modifier titlebar
+workspace_layout tabbed
 
 exec_always --no-startup-id picom &
 exec --no-startup-id nm-applet &
@@ -30,10 +34,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && exec pkill -SIGRTMIN+10 i3
 
 bindsym $mod+Print --release exec --no-startup-id "scrot -z $HOME/Pictures/screenshot/$(date +%s).png; notify-send 'screenshot saved'"
 bindsym $mod+Shift+Print --release exec --no-startup-id "scrot -z -o -s -f --format png /dev/stdout | xclip -selection clipboard -t image/png -i; notify-send 'screenshot saved'"
-
-floating_modifier $mod
-focus_follows_mouse no
-tiling_drag modifier titlebar
 
 bindsym $mod+Return exec st
 bindsym $mod+Shift+Return exec st -T "Floating Terminal"
@@ -108,6 +108,8 @@ assign [class="Postman|dbgate"] $ws4
 
 for_window [class="Lxappearance"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="mpv"] floating enable
 
 for_window [title="Floating Terminal"] floating enable
 for_window [title="Mixer"] floating enable

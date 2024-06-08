@@ -6,6 +6,7 @@ if [ -z "$IFACE" ]; then
   echo "No Connection"
   echo "No Connection"
   echo "#FF0000"
+  sleep 10
   exit 0
 fi
 
@@ -37,4 +38,4 @@ TX2=$(< "/sys/class/net/${IFACE}/statistics/tx_bytes")
 RXDIFF=$(( RX2 - RX1 ))
 TXDIFF=$(( TX2 - TX1 ))
 
-echo "$MSG UP $(format $TXDIFF) DN $(format $RXDIFF)"
+echo "UP $(format $TXDIFF) DN $(format $RXDIFF)"
