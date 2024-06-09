@@ -72,5 +72,5 @@ label=BAT
 interval=10
 
 [time]
-command=date '+%a %d %b %H:%M'
+command=date '+%a %d %b %H:%M '
 interval=60

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+case $BLOCK_BUTTON in
+  1) $(i3-msg exec 'st -T "htop" -e htop') ;;
+esac
+
 MEM=$(sar -r 1 1 | awk '$1 ~ /^Average/ && $5 ~ /[0-9.]+/ { printf("%0.2f%%\n", $5) }' 2>/dev/null)
 
 echo "$MEM"
