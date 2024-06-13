@@ -1,44 +1,43 @@
--- Better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
--- Move line
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true })
 
--- Remap nav
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "J", "}")
 vim.keymap.set("n", "K", "{")
 vim.keymap.set("n", "L", "$")
 
--- Indenting
 vim.keymap.set("v", "<", "<gv", { desc = "Increase indent" })
 vim.keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
 
--- Clear search
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<CR><esc>", { desc = "Escape and Clear hlsearch" })
 
--- Toggle case
 vim.keymap.set({ "n", "v" }, "!", "~<Left>", { desc = "Toggle case" })
 
--- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
--- Goto mark
 vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
 
--- Replace word under cursor
 vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor" })
 
--- Insert mode quit with C-c
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- Buffer
+vim.keymap.set("n", "<leader>b", ":e %:p:h/", { desc = "New file buffer wd" })
+vim.keymap.set("n", "<leader>B", ":e ", { desc = "New file from cwd" })
 vim.keymap.set("n", "[b", "<cmd>bp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]b", "<cmd>bn<CR>", { desc = "Next buffer" })
 
--- Autopair
+vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>", { desc = "New tab" })
+vim.keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Prev buffer" })
+vim.keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Next buffer" })
+
 local function between_pairs()
 	local l = vim.fn.getline(".")
 	local c = vim.fn.col(".")
@@ -121,6 +120,8 @@ vim.keymap.set("i", '"', 'v:lua.autopair_quote("\\"")', { desc = 'Autopair "', e
 vim.keymap.set("i", "'", 'v:lua.autopair_quote("\'")', { desc = "Autopair '", expr = true })
 vim.keymap.set("i", "`", "v:lua.autopair_quote('`')", { desc = "Autopair `", expr = true })
 
+vim.keymap.set("n", "Q", "<nop>")
+
 -- GIT GUD
 for _, mode in pairs({ "n", "i", "v", "x" }) do
 	for _, prefix in pairs({ "<", "<C-", "<S-", "<M-", "<A-" }) do
@@ -129,7 +130,3 @@ for _, mode in pairs({ "n", "i", "v", "x" }) do
 		end
 	end
 end
-
--- Remove mapping
-vim.keymap.set("i", "<M-e>", "<nop>")
-vim.keymap.set("n", "Q", "<nop>")

@@ -12,8 +12,8 @@ o.ruler = false
 o.cursorline = true
 o.cursorlineopt = "both"
 
+o.scrolloff = 5
 o.signcolumn = "yes"
-o.colorcolumn="80,120"
 
 o.expandtab = true
 o.shiftwidth = 2
