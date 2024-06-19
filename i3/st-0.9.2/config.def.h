@@ -5,7 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "RecMonoLinear Nerd Font:pixelsize=12:antialias=true:autohint=true";
+/*static char *font = "RecMonoLinear Nerd Font:pixelsize=12:antialias=true:autohint=true";*/
+static char *font = "GoMono Nerd Font:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 0;
 
 /*
