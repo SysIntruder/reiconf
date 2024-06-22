@@ -17,7 +17,7 @@ return {
 						"--smart-case",
 						"--trim",
 					},
-					prompt_prefix = "   ",
+					prompt_prefix = " ? ",
 					selection_caret = "  ",
 					entry_prefix = "  ",
 					selection_strategy = "reset",
@@ -46,7 +46,7 @@ return {
 					qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 					buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 					mappings = {
-						n = { ["<c-d>"] = require("telescope.actions").delete_buffer },
+						n = { ["x"] = require("telescope.actions").delete_buffer },
 					},
 				},
 				pickers = {

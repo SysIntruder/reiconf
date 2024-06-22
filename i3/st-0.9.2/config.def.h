@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Terminus:size=10:antialias=true:autohint=true";
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 0;
 
 /*
@@ -27,7 +27,7 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.1;
+static float chscale = 1.0;
 
 /*
  * word delimiter string

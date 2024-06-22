@@ -34,9 +34,22 @@ vim.keymap.set("n", "<leader>B", ":e ", { desc = "New file from cwd" })
 vim.keymap.set("n", "[b", "<cmd>bp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]b", "<cmd>bn<CR>", { desc = "Next buffer" })
 
-vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>", { desc = "New tab" })
+vim.keymap.set("n", "<leader>t", "<cmd>$tabnew<CR>", { desc = "New tab" })
 vim.keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Next buffer" })
+
+vim.keymap.set("n", "<leader><CR>", "<cmd>te<CR>", { desc = "New terminal" })
+vim.keymap.set("n", "<leader>S", "<C-w>s<cmd>te<CR>", { desc = "New split terminal" })
+vim.keymap.set("n", "<leader>V", "<C-w>v<cmd>te<CR>", { desc = "New vertical terminal" })
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal navigate left" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal navigate down" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal navigate up" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal navigate right" })
+vim.keymap.set("t", "<C-c>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>X", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 
 local function between_pairs()
 	local l = vim.fn.getline(".")
