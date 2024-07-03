@@ -7,35 +7,6 @@ return {
 		config = function()
 			require("telescope").setup({
 				defaults = {
-					vimgrep_arguments = {
-						"rg",
-						"--color=never",
-						"--no-heading",
-						"--with-filename",
-						"--line-number",
-						"--column",
-						"--smart-case",
-						"--trim",
-					},
-					prompt_prefix = " ? ",
-					selection_caret = "  ",
-					entry_prefix = "  ",
-					selection_strategy = "reset",
-					sorting_strategy = "ascending",
-					layout_strategy = "horizontal",
-					layout_config = {
-						horizontal = {
-							prompt_position = "top",
-							preview_width = 0.6,
-							results_width = 0.7,
-						},
-						vertical = {
-							mirror = false,
-						},
-						width = 0.95,
-						height = 0.95,
-						preview_cutoff = 120,
-					},
 					file_sorter = require("telescope.sorters").get_fuzzy_files,
 					file_ignore_patterns = { "node_modules" },
 					generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,

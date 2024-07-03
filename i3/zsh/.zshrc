@@ -82,8 +82,6 @@ export NVM_DIR=~/.nvm
 
 export PATH="/home/rei/.turso:$PATH"
 
-bindkey -s ^f "${ZDOTDIR}/tmux-sessionizer.sh\n"
-
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux a -t default || exec tmux new -s default && exit;
 fi

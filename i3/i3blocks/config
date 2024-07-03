@@ -21,7 +21,7 @@
 # urgent
 
 # Global properties
-separator_block_width=25
+separator_block_width=15
 markup=pango
 
 [player]
@@ -70,6 +70,10 @@ signal=10
 command=./bat.sh
 label=BAT 
 interval=10
+
+[docker]
+command=./docker.sh
+interval=once
 
 [time]
 command=date '+%a %d %b %H:%M '
