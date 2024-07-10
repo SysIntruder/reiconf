@@ -10,11 +10,10 @@ else
 	while read -r msg; do
 		if echo "$msg" | jq -e '.action == "request password"' 1>/dev/null 2>/dev/null; then
 			# Parse msg fields
-			prompt="$(printf '%s' "$msg" | jq -rc '.prompt // "Password:"')"
 			message="$(printf '%s' "$msg" | jq -rc '.message // "No message given!"')"
 
 			# Request a password prompt from dmenu
-			response=$(echo "" | dmenu -p "$message $prompt" -sb "#222222" -nf "#222222")
+			response=$(echo "" | dmenu -p "$message Input Password:" -sb "#222222" -nf "#222222" <&-)
 
 			# Cancel authentication if no password was given, otherwise respond with given password
 			if test -z "$response"; then
