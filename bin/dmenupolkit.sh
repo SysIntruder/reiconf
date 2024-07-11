@@ -13,7 +13,7 @@ else
 			message="$(printf '%s' "$msg" | jq -rc '.message // "No message given!"')"
 
 			# Request a password prompt from dmenu
-			response=$(echo "" | dmenu -p "$message Input Password:" -sb "#222222" -nf "#222222" <&-)
+			response=$(echo "$message" | dmenu -p "Password:" -sb "#222222" -nf "#222222")
 
 			# Cancel authentication if no password was given, otherwise respond with given password
 			if test -z "$response"; then
