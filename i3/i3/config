@@ -17,11 +17,9 @@ focus_follows_mouse no
 tiling_drag modifier titlebar
 workspace_layout tabbed
 
-exec_always --no-startup-id picom &
 exec --no-startup-id tmux a -t default || tmux new -s default -d &
-exec --no-startup-id feh --bg-scale ~/.local/share/backgrounds/wallpaper.png &
-exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-exec --no-startup-id xbanish &
+exec --no-startup-id xwallpaper --zoom ~/.local/share/backgrounds/wallpaper.png &
+exec --no-startup-id ~/bin/dmenupolkit.sh &
 
 # Hack for amixer i3blocks not loading on startup
 exec --no-startup-id sleep 1; pkill -SIGRTMIN+10 i3blocks 
@@ -110,17 +108,16 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 assign [class="Google-chrome|qutebrowser"] $ws2
 assign [class="Pcmanfm"] $ws3
 assign [class="Postman|beekeeper-studio"] $ws4
-assign [class="osu!"] $ws9
+assign [class="osu!|mpv"] $ws9
 
 assign [title="lazydocker"] $ws8
 
-for_window [class="Lxappearance"] floating enable
+for_window [class="Lxappearance|qt6ct|qt5ct"] floating enable
 for_window [class="Arandr"] floating enable
-for_window [class="feh"] floating enable
+for_window [class="Nsxiv"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Xarchiver"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
-
 
 for_window [title="Floating Terminal"] floating enable
 for_window [title="Mixer"] floating enable
