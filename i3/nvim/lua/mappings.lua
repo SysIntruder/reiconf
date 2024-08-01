@@ -135,6 +135,22 @@ vim.keymap.set("i", "`", "v:lua.autopair_quote('`')", { desc = "Autopair `", exp
 
 vim.keymap.set("n", "Q", "<nop>")
 
+function _G.sectionize_selection()
+	local section = vim.fn.input("Section name: ")
+
+	local start_section = string.format("%s START", section)
+	local end_section = string.format("%s END", section)
+
+	return "dO" .. start_section .. "<CR><C-c>o" .. end_section .. "<C-c>O<C-c>O<C-c>Vp"
+end
+
+vim.keymap.set(
+	"v",
+	"<leader>w",
+	"v:lua.sectionize_selection()",
+	{ desc = "Wrap with section", expr = true, silent = true }
+)
+
 -- GIT GUD
 for _, mode in pairs({ "n", "i", "v", "x" }) do
 	for _, prefix in pairs({ "<", "<C-", "<S-", "<M-", "<A-" }) do
