@@ -1,8 +1,8 @@
 config.load_autoconfig()
 
-config.bind('pw', 'spawn --userscript qute-pass', mode='normal')
-config.bind('pu', 'spawn --userscript qute-pass --username-only', mode='normal')
-config.bind('pp', 'spawn --userscript qute-pass --password-only', mode='normal')
+config.bind('pw', 'spawn --userscript qute-pass -d dmenu', mode='normal')
+config.bind('pu', 'spawn --userscript qute-pass -d dmenu --username-only', mode='normal')
+config.bind('pp', 'spawn --userscript qute-pass -d dmenu --password-only', mode='normal')
 
 config.bind('pm', 'hint links spawn --verbose --detach mpv --shuffle {hint-url}')
 
