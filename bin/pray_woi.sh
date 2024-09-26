@@ -38,6 +38,7 @@ do
     if [[ $diff -gt 0 ]]; then
       # send notification when 10 minutes into adhan
       if [[ $diff -le 10 ]]; then
+        # change this if you don't use libnotify
         notify-send -u critical "Next Prayer Time: $time"
         break
       fi
