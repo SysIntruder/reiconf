@@ -1,0 +1,73 @@
+@-moz-document url-prefix("chrome:") {
+  /* only run in compact mode */
+  @media (-moz-bool-pref: "zen.view.compact") {
+    /* only run if DOM not fullscreen */
+    :root:not([inDOMFullscreen="true"]) {
+      /* only run if zen toolbar hidden */
+      @media (-moz-bool-pref: "zen.view.compact.hide-toolbar") {
+        #zen-appcontent-navbar-container {
+          margin-left: 9.375vw !important;
+          width: 75vw !important;
+          top: calc(var(--zen-element-separation) * 2.5) !important;
+          border-radius: var(--zen-border-radius) !important;
+        }
+
+        #nav-bar {
+          min-height: calc(var(--zen-toolbar-height) + var(--zen-element-separation)) !important;
+          height: calc(var(--zen-toolbar-height) + var(--zen-element-separation)) !important;
+          max-height: calc(var(--zen-toolbar-height) + var(--zen-element-separation)) !important;
+        }
+
+        #PersonalToolbar[collapsed="false"] {
+          padding: var(--zen-element-separation) !important;
+        }
+
+        #PersonalToolbar[collapsed="true"] {
+          transition: min-height 170ms ease-out, max-height 170ms ease-out, visibility 170ms linear, padding 170ms ease-in !important;
+        }
+        
+        #PlacesToolbarItems {
+          justify-content: center !important;
+        }
+        
+        #urlbar {
+          border: 1px solid var(--zen-colors-border) !important;
+        }
+        
+        #urlbar[breakout][breakout-extend] {
+          top: 2.5px !important;
+        }
+        
+        #urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+          border: none !important;
+        }
+        
+        #urlbar-background {
+          background: var(--zen-themed-toolbar-bg) !important;
+        }
+        
+        #identity-icon-box, #identity-permission-box {
+          background: transparent !important;
+        }
+        
+        #identity-permission-box {
+          padding-left: 0 !important;
+        }
+      }
+
+      /* only run if zen sidebar hidden */
+      @media (-moz-bool-pref: "zen.view.compact.hide-tabbar") {
+        #navigator-toolbox {
+          margin-top: 9.375vh !important;
+          height: 75vh !important;
+          right: calc(100vw - var(--zen-element-separation) * 2.8) !important;
+        }
+        
+        #titlebar {
+          border: 1px solid var(--zen-colors-border) !important;
+          border-radius: var(--zen-border-radius) !important;
+        }
+      }
+    }
+  }
+}
