@@ -12,6 +12,8 @@ o.ruler = false
 o.cursorline = true
 o.cursorlineopt = "both"
 
+o.colorcolumn = "85"
+
 o.scrolloff = 5
 o.signcolumn = "yes"
 

@@ -6,13 +6,13 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true })
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true })
 
-vim.keymap.set("n", "H", "^")
-vim.keymap.set("n", "J", "}")
-vim.keymap.set("n", "K", "{")
-vim.keymap.set("n", "L", "$")
+vim.keymap.set({ "n", "v" }, "H", "^")
+vim.keymap.set({ "n", "v" }, "J", "}")
+vim.keymap.set({ "n", "v" }, "K", "{")
+vim.keymap.set({ "n", "v" }, "L", "$")
 
 vim.keymap.set("v", "<", "<gv", { desc = "Increase indent" })
 vim.keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
@@ -25,8 +25,6 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
 
-vim.keymap.set("n", "X", ":%s/\\<<C-r><C-w>\\>/", { desc = "Replace word under cursor" })
-
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "<leader>b", ":e %:p:h/", { desc = "New file buffer wd" })
@@ -35,8 +33,12 @@ vim.keymap.set("n", "[b", "<cmd>bp<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]b", "<cmd>bn<CR>", { desc = "Next buffer" })
 
 vim.keymap.set("n", "<leader>t", "<cmd>$tabnew<CR>", { desc = "New tab" })
-vim.keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Prev buffer" })
-vim.keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Prev tab" })
+vim.keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Next tab" })
+
+vim.keymap.set("n", "X", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
+vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Prev quickfix" })
+vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
 
 vim.keymap.set("n", "<leader><CR>", "<cmd>te<CR>", { desc = "New terminal" })
 vim.keymap.set("n", "<leader>S", "<C-w>s<cmd>te<CR>", { desc = "New split terminal" })
@@ -134,22 +136,6 @@ vim.keymap.set("i", "'", 'v:lua.autopair_quote("\'")', { desc = "Autopair '", ex
 vim.keymap.set("i", "`", "v:lua.autopair_quote('`')", { desc = "Autopair `", expr = true })
 
 vim.keymap.set("n", "Q", "<nop>")
-
-function _G.sectionize_selection()
-	local section = vim.fn.input("Section name: ")
-
-	local start_section = string.format("%s START", section)
-	local end_section = string.format("%s END", section)
-
-	return "dO" .. start_section .. "<CR><C-c>o" .. end_section .. "<C-c>O<C-c>O<C-c>Vp"
-end
-
-vim.keymap.set(
-	"v",
-	"<leader>w",
-	"v:lua.sectionize_selection()",
-	{ desc = "Wrap with section", expr = true, silent = true }
-)
 
 -- GIT GUD
 for _, mode in pairs({ "n", "i", "v", "x" }) do

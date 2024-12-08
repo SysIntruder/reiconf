@@ -1,0 +1,59 @@
+@-moz-document url(chrome://browser/content/browser.xhtml){
+  
+  /* Bottom Navbar */
+  /* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/navbar_below_content.css */
+  /* added !importan in each properties */
+  
+  :root:not([inFullscreen]) {
+    --uc-bottom-toolbar-height: calc(39px + var(--toolbarbutton-outer-padding) ) !important;
+  }
+
+  :root[uidensity="compact"]:not([inFullscreen]) {
+    --uc-bottom-toolbar-height: calc(32px + var(--toolbarbutton-outer-padding) ) !important;
+  }
+
+  #browser,
+  #customization-container {
+    margin-bottom: var(--uc-bottom-toolbar-height,0px) !important;
+  }
+
+  #nav-bar {
+    position: fixed !important;
+    bottom: 0px !important;
+    width: 100% !important;
+    z-index: 1 !important;
+  }
+
+  #nav-bar-customization-target {
+    -webkit-box-flex: 1 !important;
+  }
+
+  .panel-viewstack {
+    max-height: unset !important;
+  }
+
+  #urlbar[breakout][breakout-extend] {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    bottom: 0px !important;
+    top: auto !important;
+  }
+
+  .urlbarView-body-inner {
+    border-top-style: none !important;
+  }
+
+  /* Hide Back & Forward History */
+
+  #nav-bar #back-button, #nav-bar #forward-button {
+    display: none !important;
+  }
+
+  /* Hide Unified Extension */
+
+  .unified-extensions-item,
+  #unified-extensions-button {
+    display: none !important;
+  }
+
+}

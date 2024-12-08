@@ -13,6 +13,13 @@ return {
 					"golines",
 
 					"typescript-language-server",
+					"tailwindcss-language-server",
+
+					"emmet-ls",
+
+					"prettier",
+
+					"clangd",
 				},
 			})
 		end,
@@ -27,10 +34,30 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					go = { "gofmt", "goimports", "golines" },
+					json = { "prettier" },
+					c_cpp = { "clang-format" },
+					c = { "clang_format" },
+					cpp = { "clang_format" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
 					lsp_fallback = true,
+				},
+				formatters = {
+					golines = {
+						prepend_args = {
+							"--max-len=85",
+						},
+					},
+					clang_format = {
+						prepend_args = {
+							"-style={ \
+              UseTab: Never, \
+              AccessModifierOffset: 0, \
+              IndentAccessModifiers: true, \
+              PackConstructorInitializers: Never}",
+						},
+					},
 				},
 			})
 		end,
@@ -44,7 +71,7 @@ return {
 		config = function()
 			local config = require("nvim-treesitter.configs")
 			config.setup({
-				ensure_installed = { "lua", "go", "javascript", "typescript" },
+				ensure_installed = { "lua", "go", "javascript", "typescript", "c", "cpp", "cmake" },
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
@@ -103,10 +130,47 @@ return {
 			})
 
 			local lspconfig = require("lspconfig")
-			lspconfig.tsserver.setup({
+
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 				on_init = on_init,
 				handlers = handlers,
+			})
+
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+				on_init = on_init,
+				handlers = handlers,
+				filetypes = {
+					"css",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"svelte",
+					"typescriptreact",
+					"vue",
+				},
+			})
+
+			lspconfig.emmet_ls.setup({
+				capabilities = capabilities,
+				on_init = on_init,
+				handlers = handlers,
+				filetypes = {
+					"css",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"svelte",
+					"typescriptreact",
+					"vue",
+				},
 			})
 
 			lspconfig.gopls.setup({
@@ -123,6 +187,12 @@ return {
 						},
 					},
 				},
+			})
+
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+				on_init = on_init,
+				handlers = handlers,
 			})
 
 			local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }

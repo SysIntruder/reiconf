@@ -20,6 +20,7 @@ workspace_layout tabbed
 exec --no-startup-id tmux a -t default || tmux new -s default -d &
 exec --no-startup-id xwallpaper --zoom ~/.local/share/backgrounds/wallpaper.png &
 exec --no-startup-id ~/bin/dmenupolkit.sh &
+exec --no-startup-id ~/bin/pray_woi.sh &
 
 # Hack for amixer i3blocks not loading on startup
 exec --no-startup-id sleep 1; pkill -SIGRTMIN+10 i3blocks 
@@ -34,20 +35,20 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && exec pkill -SIGRTMIN+10 i3
 
 bindsym $mod+Print --release exec --no-startup-id "scrot -z $HOME/Pictures/screenshot/$(date +%s).png; notify-send 'screenshot saved'"
 bindsym $mod+Shift+Print --release exec --no-startup-id "scrot -z -o -s -f --format png /dev/stdout | xclip -selection clipboard -t image/png -i; notify-send 'screenshot saved'"
+bindsym $mod+Ctrl+Print --release exec --no-startup-id "scrot -z -o -s -f $HOME/Pictures/screenshot/$(date +%s).png; notify-send 'screenshot saved'"
 
 bindsym $mod+Return exec st
 bindsym $mod+Shift+Return exec st -T "Floating Terminal"
-bindsym $mod+F2 exec qutebrowser
+bindsym $mod+F2 exec firefox-developer-edition
 bindsym $mod+F3 exec pcmanfm
 bindsym $mod+a exec st -T "Mixer" -e alsamixer
-bindsym $mod+Tab exec st -T "nmtui" -e nmtui
+bindsym $mod+Tab exec networkmanager_dmenu
 
 bindsym $mod+q kill
 bindsym $mod+x --release exec --no-startup-id xkill
 
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
-bindsym $mod+Shift+p exec --no-startup-id passmenu
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -72,7 +73,7 @@ bindsym $mod+space floating toggle
 
 workspace_auto_back_and_forth yes
 bindsym $mod+grave workspace back_and_forth
-bindsym $mod+p workspace prev
+bindsym $mod+Shift+n workspace prev
 bindsym $mod+n workspace next
 
 set $ws1 "1"
@@ -84,6 +85,16 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
+
+workspace $ws1 output eDP
+workspace $ws2 output eDP
+workspace $ws3 output eDP
+workspace $ws4 output eDP
+workspace $ws5 output HDMI-A-0
+workspace $ws6 output HDMI-A-0
+workspace $ws7 output HDMI-A-0
+workspace $ws8 output HDMI-A-0
+workspace $ws9 output HDMI-A-0
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -105,10 +116,10 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 
-assign [class="Google-chrome|qutebrowser"] $ws2
-assign [class="Pcmanfm"] $ws3
-assign [class="Postman|beekeeper-studio"] $ws4
-assign [class="osu!|mpv"] $ws9
+assign [class="firefox-developer-edition"] $ws2
+assign [class="Pcmanfm|obsidian|krita"] $ws3
+assign [class="Postman|bruno|beekeeper-studio"] $ws4
+assign [class="mpv"] $ws9
 
 assign [title="lazydocker"] $ws8
 
@@ -123,6 +134,9 @@ for_window [title="Floating Terminal"] floating enable
 for_window [title="Mixer"] floating enable
 for_window [title="htop"] floating enable
 for_window [title="nmtui"] floating enable
+
+for_window [window_role="toolbox"] floating enable
+for_window [window_type="dialog|utility|toolbar"] floating enable
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -140,24 +154,27 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_output [d]isplay [a]udio [o]ff
-mode "$mode_output" {
-        bindsym d exec --no-startup-id "$HOME/bin/display_hdmi.sh"
-        bindsym a exec --no-startup-id "$HOME/bin/audio_hdmi.sh"
-        bindsym o exec --no-startup-id xrandr --output HDMI-A-0 --off && pactl set-default-sink alsa_output.pci-0000_03_00.6.analog-stereo.2
+set $mode_present [d]uplicate [e]xtend [p]rimary-only [s]econdary-only [a]udio-on audio-[o]ff 
+mode "$mode_present" {
+        bindsym d exec --no-startup-id "$HOME/bin/display_duplicate.sh"
+        bindsym e exec --no-startup-id "$HOME/bin/display_extend.sh"
+        bindsym p exec --no-startup-id "$HOME/bin/display_primary.sh"
+        bindsym s exec --no-startup-id "$HOME/bin/display_secondary.sh"
+        bindsym a exec --no-startup-id "$HOME/bin/audio_hdmi_on.sh"
+        bindsym o exec --no-startup-id "$HOME/bin/audio_hdmi_off.sh"
 
+        bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+o mode "default"
 }
-bindsym $mod+o mode "$mode_output"
+bindsym $mod+p mode "$mode_present"
 
 set $mode_system loc[k] s[l]eep [e]xit [r]eboot [s]hutdown
 mode "$mode_system" {
-	bindsym --release k exec --no-startup-id slock, mode "default"
-	bindsym --release l exec --no-startup-id slock & systemctl suspend, mode "default"
-	bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
-	bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
-	bindsym --release s exec --no-startup-id systemctl poweroff, mode "default"
+        bindsym --release k exec --no-startup-id slock, mode "default"
+        bindsym --release l exec --no-startup-id slock & systemctl suspend, mode "default"
+        bindsym --release e exec --no-startup-id i3-msg exit, mode "default"
+        bindsym --release r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym --release s exec --no-startup-id systemctl poweroff, mode "default"
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -168,7 +185,6 @@ bindsym $mod+0 mode "$mode_system"
 
 bar {
         padding 0
-        position top
         status_command i3blocks
 
         # default
