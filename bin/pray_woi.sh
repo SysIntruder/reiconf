@@ -1,5 +1,8 @@
 #! /bin/sh
 
+# delay startup for 2 minutes
+sleep 120
+
 while true
 do
 
@@ -33,9 +36,6 @@ do
     time_minute=$(( $(date -d "$time" +%-H) * 60 + $(date -d "$time" +%-M) ))
     diff=$(( time_minute - current_minute ))
 
-    # track completion
-    complete=$(( complete + 1 ))
-
     # only check future time
     if [ $diff -gt 0 ]; then
       # send notification when 10 minutes into adhan
@@ -44,6 +44,9 @@ do
         notify-send -u critical "Next Prayer Time $time in $diff minutes"
         break
       fi
+    else
+      # track completion
+      complete=$(( complete + 1 ))
     fi
   done
 
