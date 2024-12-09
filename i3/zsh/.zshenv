@@ -1,3 +1,3 @@
-ZDOTDIR=$HOME/.config/zsh
-GOPATH=$HOME/go
-PATH=$PATH:$HOME/bin:$GOPATH/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/bin:$GOPATH/bin
+export TERMINAL=st
