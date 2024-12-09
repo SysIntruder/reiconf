@@ -7,27 +7,24 @@
 - amd-ucode
 
 # Desktop Environment
-- zsh                   : shell
-- i3-wm                 : window manager
-- i3blocks              : statusbar
-- tmux                  : terminal multiplexer
-- dmenu                 : application launcher
-- pass                  : password manager
-- slock                 : lock screen
-- scrot                 : screenshot
-- xwallpaper            : wallpaper setter
-- nmtui                 : network manager
-- arandr                : display manager
-- st                    : terminal
-- nsxiv                 : image viewer
-- mpv                   : video player
-- pcmanfm-gtk3          : file manager
-- qutebrowser           : browser
-- mupdf                 : pdf viewer
-- neovim                : text editor
-- sent                  : simple presentation
-- dunst                 : notification
-- picom                 : display compositor
+- zsh                       : shell
+- i3-wm                     : window manager
+- i3blocks                  : statusbar
+- tmux                      : terminal multiplexer
+- dmenu                     : application launcher
+- slock                     : lock screen
+- scrot                     : screenshot
+- xwallpaper                : wallpaper setter
+- networkmanager-dmenu      : network manager
+- arandr                    : display manager
+- st                        : terminal
+- nsxiv                     : image viewer
+- mpv                       : video player
+- pcmanfm-gtk3              : file manager
+- firefox-developer-edition : browser
+- mupdf                     : pdf viewer
+- neovim                    : text editor
+- dunst                     : notification
 
 # Utils
 - acpilight             : brightness control
@@ -39,7 +36,6 @@
 - lxappearance-gtk3     : gtk3 theme
 - qt5ct                 : qt5 theme
 - qt6ct                 : qt6 theme
-- appimagelauncher      : integrate appimage
 
 # Programming
 - git
@@ -65,13 +61,13 @@
 - xorg-xrandr               : arandr
 - xarchiver                 : pcmanfm
 - gvfs                      : pcmanfm
-- python-adblock            : qutebrowser
-- pdfjs                     : qutebrowser
 - fzf                       : neovim
 - ripgrep                   : neovim
-- farbfeld                  : sent
 - xorg-xbacklight           : acpilight
 - pulseaudio                : pavucontrol
 - gtk4                      : pavucontrol
 - qt5-base                  : qt5ct, appimagelauncher
 - qt6-base                  : qt6ct
+- ueberzug                  : ranger
+- atool                     : ranger
+- highlight                 : ranger
