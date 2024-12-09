@@ -40,9 +40,11 @@ bindsym $mod+Ctrl+Print --release exec --no-startup-id "scrot -z -o -s -f $HOME/
 bindsym $mod+Return exec st
 bindsym $mod+Shift+Return exec st -T "Floating Terminal"
 bindsym $mod+F2 exec firefox-developer-edition
-bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F3 exec st -T "File Manager" -e ranger
+bindsym $mod+Shift+F3 exec pcmanfm
 bindsym $mod+a exec st -T "Mixer" -e alsamixer
 bindsym $mod+Tab exec networkmanager_dmenu
+bindsym $mod+equal exec =
 
 bindsym $mod+q kill
 bindsym $mod+x --release exec --no-startup-id xkill
@@ -122,6 +124,7 @@ assign [class="Postman|bruno|beekeeper-studio"] $ws4
 assign [class="mpv"] $ws9
 
 assign [title="lazydocker"] $ws8
+assign [title="File Manager"] $ws3
 
 for_window [class="Lxappearance|qt6ct|qt5ct"] floating enable
 for_window [class="Arandr"] floating enable
