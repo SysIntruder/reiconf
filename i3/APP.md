@@ -69,5 +69,4 @@
 - qt5-base                  : qt5ct, appimagelauncher
 - qt6-base                  : qt6ct
 - ueberzug                  : ranger
-- atool                     : ranger
 - highlight                 : ranger
