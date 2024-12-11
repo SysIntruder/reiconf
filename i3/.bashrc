@@ -38,7 +38,7 @@ alias fetch='inxi -SBCGNDI'
 # prompt
 RESET="\[\033[0m\]"
 BLUE="\[\033[34;1m\]"
-GREEN="\[\033[31;1m\]"
+BOLD="\[\033[;1m\]"
 PS1='[\u@\h \W]\$ '
 
 # git prompt
@@ -48,7 +48,7 @@ GIT_PS1_SHOWDIRTYSTATE='y'
 GIT_PS1_SHOWSTASHSTATE='y'
 GIT_PS1_SHOWUNTRACKEDFILES='y'
 GIT_PS1_SHOWUPSTREAM='auto'
-PROMPT_COMMAND='__git_ps1 "${BLUE}\W${RESET}" "] " " ${GREEN}%s${RESET}"'
+PROMPT_COMMAND='__git_ps1 "${BLUE}\W${RESET}" "] " " ${BOLD}%s${RESET}"'
 
 # nvm
 export NVM_DIR=~/.nvm

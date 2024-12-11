@@ -11,8 +11,8 @@ set visible-stats on
 # vi mode
 set editing-mode vi
 set show-mode-in-prompt on
-set vi-cmd-mode-string "[\1\e[35;1m\2CMD\1\e[0m\2 "
-set vi-ins-mode-string "[\1\e[33;1m\2INS\1\e[0m\2 "
+set vi-cmd-mode-string "[\1\e[33;1m\2CMD\1\e[0m\2 "
+set vi-ins-mode-string "[\1\e[35;1m\2INS\1\e[0m\2 "
 
 # keymap
 TAB:menu-complete
