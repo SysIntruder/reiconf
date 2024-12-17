@@ -52,7 +52,7 @@ if [[ -z "$COMBINED_DEVICES" ]]; then
 fi
 
 # Display devices in dmenu
-DEVICE_CHOICE=$(echo -e "$COMBINED_DEVICES" | dmenu -l 20 -i -p "Mount/Unmount MTP/USB Device:")
+DEVICE_CHOICE=$(echo -e "$COMBINED_DEVICES" | dmenu -l 20 -i -p "Mount/Unmount Devices:")
 
 if [[ -z "$DEVICE_CHOICE" ]]; then
     notify-send "Device Mount" "No device selected."
