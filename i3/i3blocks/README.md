@@ -8,3 +8,4 @@
 - alsa-utils
 - acpi
 - ip
+- ncdu

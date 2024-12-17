@@ -1,7 +1,13 @@
 #!/bin/sh
 
-ACTIVE="<span foreground=\"#22BB22\">$BLOCK_INSTANCE</span>"
-INACTIVE="<span foreground=\"#888888\"><s>$BLOCK_INSTANCE</s></span>"
+SERVICE="$SERVICE_NAME"
+
+if [ -z "$SERVICE_NAME" ]; then
+  SERVICE="$BLOCK_INSTANCE"
+fi
+
+ACTIVE="<span foreground=\"#22BB22\">$SERVICE</span>"
+INACTIVE="<span foreground=\"#888888\"><s>$SERVICE</s></span>"
 
 if [ "$(systemctl is-active $BLOCK_INSTANCE)" != "active" ]; then
   if [ "$BLOCK_BUTTON" == '1' ]; then

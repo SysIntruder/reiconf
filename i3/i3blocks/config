@@ -51,13 +51,13 @@ interval=10
 [vol]
 command=./vol.sh
 label=VOL 
-interval=once
+interval=10
 signal=10
 
 [mic]
 command=./mic.sh
 label=MIC 
-interval=once
+interval=10
 signal=10
 
 [bri]
@@ -75,6 +75,11 @@ interval=10
 command=./docker.sh
 interval=once
 
+[ufw]
+command=./systemctl.sh
+interval=once
+instance=ufw
+
 [time]
 command=date '+%a %d %b %H:%M '
-interval=60
+interval=30
