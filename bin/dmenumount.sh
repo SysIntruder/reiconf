@@ -6,14 +6,13 @@ MTP_MOUNT="$HOME/Android"
 MTP_DEVICES=$(simple-mtpfs -l | grep -oE '^[0-9]+: .+' | sed 's/^[0-9]\+: //' | sed 's/(id[0-9])//g' | sed 's/(MTP)//g')
 
 # Detect USB devices (excluding nvme0n1)
-USB_DEVICES=$(lsblk -rno NAME,LABEL,TYPE,MOUNTPOINT | grep 'disk' | grep -v 'nvme0n1' | awk '{if ($2 != "") print $1 ": " $2 " (" $3 ")"}')
+USB_DEVICES=$(lsblk -rno NAME,LABEL,TYPE,MOUNTPOINT | grep -v 'disk' | grep -v 'nvme0n1' | awk '{ print $1 }')
 
 # Add mount/unmount status to MTP devices
 MTP_DEVICES_WITH_STATUS=""
 for device in $MTP_DEVICES; do
     if [[ -n "$device" ]]; then  # Skip empty strings
-        DEVICE_NUM=$(simple-mtpfs -l | grep "$device" | awk '{print $1}' | cut -d':' -f1)
-        MTP_MOUNT_DIR="$MTP_MOUNT/android$DEVICE_NUM"
+        MTP_MOUNT_DIR="$MTP_MOUNT/$device"
         if [[ -n "$MTP_DEVICES_WITH_STATUS" ]]; then
           MTP_DEVICES_WITH_STATUS+="\n"
         fi
@@ -43,7 +42,18 @@ for device in $USB_DEVICES; do
 done
 
 # Combine MTP and USB devices for selection
-COMBINED_DEVICES="$MTP_DEVICES_WITH_STATUS$USB_DEVICES_WITH_STATUS"
+COMBINED_DEVICES=""
+if [[ -n "$MTP_DEVICES_WITH_STATUS" ]]; then
+  COMBINED_DEVICES+="$MTP_DEVICES_WITH_STATUS"
+fi
+
+if [[ -n "$USB_DEVICES_WITH_STATUS" ]]; then
+  if [[ -n "$COMBINED_DEVICES" ]]; then
+    COMBINED_DEVICES+="\n"
+  fi
+
+  COMBINED_DEVICES+="$USB_DEVICES_WITH_STATUS"
+fi
 
 # Check if there are any devices to display
 if [[ -z "$COMBINED_DEVICES" ]]; then
@@ -82,7 +92,7 @@ if [[ "$DEVICE_CHOICE" == "MTP:"* ]]; then
 
 elif [[ "$DEVICE_CHOICE" == "USB:"* ]]; then
     # Handle USB devices
-    DEVICE_NAME=$(echo "$DEVICE_CHOICE" | cut -d':' -f1)
+    DEVICE_NAME=$(echo "$DEVICE_CHOICE" | cut -d':' -f2 | sed 's/ \[.*\]//')
     MOUNT_PATH=$(udisksctl info -b /dev/$DEVICE_NAME | grep MountPoints | awk '{print $2}')
 
     if [[ -n "$MOUNT_PATH" ]]; then
