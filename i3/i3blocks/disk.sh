@@ -1,5 +1,9 @@
 #!/bin/sh
 
+case $BLOCK_BUTTON in
+  1) $(i3-msg exec 'st -T "ncdu" -e ncdu') ;;
+esac
+
 USED=$(df -hPl / | awk '/dev/ { print $5 }')
 
 echo "$USED"
