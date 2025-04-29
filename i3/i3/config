@@ -18,7 +18,7 @@ tiling_drag modifier titlebar
 workspace_layout tabbed
 
 exec --no-startup-id tmux a -t default || tmux new -s default -d &
-exec --no-startup-id xwallpaper --zoom ~/.local/share/backgrounds/wallpaper.png &
+exec --no-startup-id display -window root $HOME/.local/share/backgrounds/wallpaper.png &
 exec --no-startup-id ~/bin/dmenupolkit.sh &
 exec --no-startup-id ~/bin/pray_woi.sh &
 
@@ -33,12 +33,17 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && exec pkill -SIGRTMIN+10 i3blocks
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && exec pkill -SIGRTMIN+10 i3blocks
 
+# Fallback play-pause
+bindsym $mod+F5 exec playerctl play-pause && exec pkill -SIGRTMIN+10 i3blocks
+
 bindsym $mod+Print --release exec --no-startup-id "scrot -z $HOME/Pictures/screenshot/$(date +%s).png; notify-send 'screenshot saved'"
 bindsym $mod+Shift+Print --release exec --no-startup-id "scrot -z -o -s -f --format png /dev/stdout | xclip -selection clipboard -t image/png -i; notify-send 'screenshot saved'"
 bindsym $mod+Ctrl+Print --release exec --no-startup-id "scrot -z -o -s -f $HOME/Pictures/screenshot/$(date +%s).png; notify-send 'screenshot saved'"
 
-bindsym $mod+Return exec st
+bindsym $mod+Return exec st -T "tmux" -e "$HOME/bin/launch_tmux.sh"
 bindsym $mod+Shift+Return exec st -T "Floating Terminal"
+bindsym $mod+Ctrl+Return exec st
+
 bindsym $mod+F2 exec firefox-developer-edition
 bindsym $mod+F3 exec st -T "File Manager" -e ranger
 bindsym $mod+a exec st -T "Mixer" -e alsamixer
