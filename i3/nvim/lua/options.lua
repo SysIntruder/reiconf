@@ -57,25 +57,6 @@ g.netrw_keepdir = 1
 g.netrw_localcopydircmd = "cp -r"
 g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 
--- Terminal settings
-g.terminal_color_0 = "#4f5258"
-g.terminal_color_1 = "#ffc0b9"
-g.terminal_color_2 = "#b3f6c0"
-g.terminal_color_3 = "#fce094"
-g.terminal_color_4 = "#a6dbff"
-g.terminal_color_5 = "#ffcaff"
-g.terminal_color_6 = "#8cf8f7"
-g.terminal_color_7 = "#c4c6cd"
-
-g.terminal_color_8 = "#4f5258"
-g.terminal_color_9 = "#ffc0b9"
-g.terminal_color_10 = "#b3f6c0"
-g.terminal_color_11 = "#fce094"
-g.terminal_color_12 = "#a6dbff"
-g.terminal_color_13 = "#ffcaff"
-g.terminal_color_14 = "#8cf8f7"
-g.terminal_color_15 = "#c4c6cd"
-
 g["loaded_node_provider"] = 0
 g["loaded_python3_provider"] = 0
 g["loaded_perl_provider"] = 0

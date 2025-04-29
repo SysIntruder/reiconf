@@ -17,7 +17,7 @@ require("netrw")
 require("statusline")
 require("lazy").setup("plugins", {
 	ui = {
-		border = "rounded",
+		border = "single",
 		backdrop = 100,
 	},
 })

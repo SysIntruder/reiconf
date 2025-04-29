@@ -19,24 +19,18 @@ vim.keymap.set("v", ">", ">gv", { desc = "Decrease indent" })
 
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<CR><esc>", { desc = "Escape and Clear hlsearch" })
 
-vim.keymap.set({ "n", "v" }, "!", "~<Left>", { desc = "Toggle case" })
-
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 vim.keymap.set("n", "M", "`", { desc = "Goto Mark" })
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "<leader>b", ":e %:p:h/", { desc = "New file buffer wd" })
-vim.keymap.set("n", "<leader>B", ":e ", { desc = "New file from cwd" })
-vim.keymap.set("n", "[b", "<cmd>bp<CR>", { desc = "Prev buffer" })
-vim.keymap.set("n", "]b", "<cmd>bn<CR>", { desc = "Next buffer" })
-
 vim.keymap.set("n", "<leader>t", "<cmd>$tabnew<CR>", { desc = "New tab" })
-vim.keymap.set("n", "[t", "<cmd>tabp<CR>", { desc = "Prev tab" })
-vim.keymap.set("n", "]t", "<cmd>tabn<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "[[", "<cmd>tabp<CR>", { desc = "Prev tab" })
+vim.keymap.set("n", "]]", "<cmd>tabn<CR>", { desc = "Next tab" })
 
 vim.keymap.set("n", "X", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
+
 vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Prev quickfix" })
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
 
@@ -47,8 +41,7 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal navigate le
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal navigate down" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal navigate up" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal navigate right" })
-vim.keymap.set("t", "<C-c>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<C-x>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>X", "<cmd>bd!<CR>", { desc = "Force close buffer" })

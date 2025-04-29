@@ -5,12 +5,12 @@ return {
 		config = function()
 			require("mason").setup({
 				ui = {
-					border = "rounded",
+					border = "single",
 				},
 				ensure_installed = {
 					"gopls",
 					"goimports",
-					"golines",
+					-- "golines",
 
 					"typescript-language-server",
 					"tailwindcss-language-server",
@@ -33,7 +33,8 @@ return {
 			require("conform").setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					go = { "gofmt", "goimports", "golines" },
+					-- go = { "gofmt", "goimports", "golines" },
+					go = { "gofmt", "goimports" },
 					json = { "prettier" },
 					c_cpp = { "clang-format" },
 					c = { "clang_format" },
@@ -50,13 +51,7 @@ return {
 						},
 					},
 					clang_format = {
-						prepend_args = {
-							"-style={ \
-              UseTab: Never, \
-              AccessModifierOffset: 0, \
-              IndentAccessModifiers: true, \
-              PackConstructorInitializers: Never}",
-						},
+						prepend_args = { "--style=file", "--fallback-style=Google" },
 					},
 				},
 			})
@@ -109,24 +104,18 @@ return {
 				end
 			end
 
-			local border = {
-				{ "╭", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╮", "FloatBorder" },
-				{ "│", "FloatBorder" },
-				{ "╯", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╰", "FloatBorder" },
-				{ "│", "FloatBorder" },
-			}
+			local signs = { Error = "E ", Warn = "W ", Hint = "H ", Info = "I " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+			end
 
 			local handlers = {
-				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
+				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
 			}
-
 			vim.diagnostic.config({
-				float = { border = border },
+				float = { border = "single" },
 			})
 
 			local lspconfig = require("lspconfig")
@@ -194,12 +183,6 @@ return {
 				on_init = on_init,
 				handlers = handlers,
 			})
-
-			local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-			end
 
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP go to definition" })
 			vim.keymap.set("n", "gk", vim.lsp.buf.hover, { desc = "LSP hover information" })
