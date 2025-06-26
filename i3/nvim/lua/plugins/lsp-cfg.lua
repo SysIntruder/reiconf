@@ -31,18 +31,21 @@ return {
 		event = "BufWritePre",
 		config = function()
 			require("conform").setup({
+				format_on_save = function(bufnr)
+					local disable_filetypes = { c = true, cpp = true }
+					return {
+						timeout_ms = 500,
+						lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+					}
+				end,
 				formatters_by_ft = {
 					lua = { "stylua" },
 					-- go = { "gofmt", "goimports", "golines" },
 					go = { "gofmt", "goimports" },
 					json = { "prettier" },
-					c_cpp = { "clang-format" },
-					c = { "clang_format" },
-					cpp = { "clang_format" },
-				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_fallback = true,
+					-- c_cpp = { "clang-format" },
+					-- c = { "clang_format" },
+					-- cpp = { "clang_format" },
 				},
 				formatters = {
 					golines = {
@@ -51,6 +54,8 @@ return {
 						},
 					},
 					clang_format = {
+						cwd = require("conform.util").root_file({ ".clang-format" }),
+						require_cwd = true,
 						prepend_args = { "--style=file", "--fallback-style=Google" },
 					},
 				},
@@ -111,12 +116,12 @@ return {
 			end
 
 			local handlers = {
-				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
-				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
+				["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover),
+				["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help),
 			}
-			vim.diagnostic.config({
-				float = { border = "single" },
-			})
+			-- vim.diagnostic.config({
+			-- 	float = { border = "single" },
+			-- })
 
 			local lspconfig = require("lspconfig")
 
