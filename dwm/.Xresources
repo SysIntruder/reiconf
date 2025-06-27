@@ -1,0 +1,128 @@
+! dwm config
+dwm.borderpx: 0
+dwm.gappx: 12
+dwm.snap: 0
+dwm.showbar: 1
+dwm.topbar: 1
+dwm.vertpad: 12
+dwm.sidepad: 12
+dwm.horizpadbar: 12
+dwm.vertpadbar: 12
+dwm.mfact: 0.55
+dwm.nmaster: 1
+dwm.resizehints: 0
+dwm.lockfullscreen: 1
+dwm.statusbar: dsblocks
+dwm.centeredtitle: 0
+! dwm.font: Cozette:pixelsize=13:antialias=false:autohint=false
+dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! dwm.font: cherry:pixelsize=13:antialias=false:autohint=false
+! dwm.font: CtrlD:pixelsize=13:antialias=false:autohint=false
+! dwm.font: curie:pixelsize=16:antialias=false:autohint=false
+
+! dwm suckless theme
+! dwm.normbg: #222222
+! dwm.normborder: #444444
+! dwm.normfg: #bbbbbb
+! dwm.selfg: #eeeeee
+! dwm.selbg: #005577
+! dwm.urgborder: #CC3333
+
+! dwm neovim theme
+dwm.normbg: #14161b
+dwm.normborder: #14161b
+dwm.normfg: #c4c6cd
+dwm.selfg: #07080d
+dwm.selbg: #b3f6c0
+dwm.urgborder: #ffc0b9
+
+! dmenu config
+dmenu.topbar: 1
+dmenu.vertpad: 12
+dmenu.sidepad: 12
+dmenu.user_bh: 12
+! dmenu.font: Cozette:pixelsize=13:antialias=false:autohint=false
+dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! dmenu.font: cherry:pixelsize=13:antialias=false:autohint=false
+! dmenu.font: CtrlD:pixelsize=13:antialias=false:autohint=false
+! dmenu.font: curie:pixelsize=16:antialias=false:autohint=false
+
+! dmenu suckless theme
+! dmenu.normbg: #222222
+! dmenu.normfg: #bbbbbb
+! dmenu.selbg: #005577
+! dmenu.selfg: #eeeeee
+! dmenu.outbg: #000000
+! dmenu.outfg: #00ffff
+
+! dmenu neovim theme
+dmenu.normbg: #14161b
+dmenu.normfg: #c4c6cd
+dmenu.selbg: #b3f6c0
+dmenu.selfg: #2c2e33
+dmenu.outbg: #07080d
+dmenu.outfg: #8cf8f7
+
+! st config
+st.borderpx: 12
+st.cwscale: 1.0
+st.chscale: 1.0
+! st.font: Cozette:pixelsize=13:antialias=false:autohint=false
+st.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! st.font: cherry:pixelsize=13:antialias=false:autohint=false
+! st.font: CtrlD:pixelsize=13:antialias=false:autohint=false
+! st.font: curie:pixelsize=16:antialias=false:autohint=false
+
+! st suckless theme
+! st.normblack: black
+! st.normred: red3
+! st.normgreen: green3
+! st.normyellow: yellow3
+! st.normblue: blue2
+! st.normmagenta: magenta3
+! st.normcyan: cyan3
+! st.normwhite: gray90
+! st.briblack: gray50
+! st.brired: red
+! st.brigreen: green
+! st.briyellow: yellow
+! st.briblue: #5c5cff
+! st.brimagenta: magenta
+! st.bricyan: cyan
+! st.briwhite: white
+! st.defcs: #cccccc
+! st.defrcs: #555555
+! st.deffg: gray90
+! st.defbg: black
+
+! st neovim theme
+st.normblack: #2c2e33
+st.normred: #ffc0b9
+st.normgreen: #b4f6c0
+st.normyellow: #fce094
+st.normblue: #a6dbff
+st.normmagenta: #ffcaff
+st.normcyan: #8cf8f7
+st.normwhite: #c4c6cd
+st.briblack: #2c2e33
+st.brired: #ffc0b9
+st.brigreen: #b4f6c0
+st.briyellow: #fce094
+st.briblue: #a6dbff
+st.brimagenta: #ffcaff
+st.bricyan: #8cf8f7
+st.briwhite: #c4c6cd
+st.defcs: #9b9ea4
+st.defrcs: #4f5258
+st.deffg: #eef1f8
+st.defbg: #14161b
+
+! slock suckless theme
+! slock.defbg: black
+! slock.inpbg: #005577
+! slock.errbg: #CC3333
+
+! slock neovim theme
+slock.defbg: #14161b
+slock.inpbg: #b4f6c0
+slock.errbg: #ffc0b9
