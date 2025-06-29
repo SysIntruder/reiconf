@@ -1,24 +1,32 @@
+! nsxiv
+! Nsxiv.window.background: #000000
+! Nsxiv.window.foreground: #FFFFFF
+
+! nsxiv neovim theme
+! Nsxiv.window.background: #14161b
+! Nsxiv.window.foreground: #c4c6cd
+
+! nsxiv dracula theme
+Nsxiv.window.background: #282a36
+Nsxiv.window.foreground: #f8f8f2
+
 ! dwm config
-dwm.borderpx: 0
-dwm.gappx: 12
 dwm.snap: 0
 dwm.showbar: 1
 dwm.topbar: 1
-dwm.vertpad: 12
-dwm.sidepad: 12
-dwm.horizpadbar: 12
-dwm.vertpadbar: 12
 dwm.mfact: 0.55
 dwm.nmaster: 1
 dwm.resizehints: 0
 dwm.lockfullscreen: 1
 dwm.statusbar: dsblocks
 dwm.centeredtitle: 0
-! dwm.font: Cozette:pixelsize=13:antialias=false:autohint=false
+dwm.borderpx: 0
+dwm.gappx: 12
+dwm.vertpad: 12
+dwm.sidepad: 12
+dwm.horizpadbar: 12
+dwm.vertpadbar: 12
 dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
-! dwm.font: cherry:pixelsize=13:antialias=false:autohint=false
-! dwm.font: CtrlD:pixelsize=13:antialias=false:autohint=false
-! dwm.font: curie:pixelsize=16:antialias=false:autohint=false
 
 ! dwm suckless theme
 ! dwm.normbg: #222222
@@ -26,26 +34,30 @@ dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
 ! dwm.normfg: #bbbbbb
 ! dwm.selfg: #eeeeee
 ! dwm.selbg: #005577
-! dwm.urgborder: #CC3333
+! dwm.urgbg: #CC3333
 
 ! dwm neovim theme
-dwm.normbg: #14161b
-dwm.normborder: #14161b
-dwm.normfg: #c4c6cd
-dwm.selfg: #07080d
-dwm.selbg: #b3f6c0
-dwm.urgborder: #ffc0b9
+! dwm.normbg: #14161b
+! dwm.normborder: #14161b
+! dwm.normfg: #c4c6cd
+! dwm.selfg: #07080d
+! dwm.selbg: #b3f6c0
+! dwm.urgbg: #ffc0b9
+
+! dwm dracula theme
+dwm.normbg: #282a36
+dwm.normborder: #282a36
+dwm.normfg: #f8f8f2
+dwm.selfg: #f8f8f2
+dwm.selbg: #44475a
+dwm.urgbg: #ff5555
 
 ! dmenu config
 dmenu.topbar: 1
 dmenu.vertpad: 12
 dmenu.sidepad: 12
 dmenu.user_bh: 12
-! dmenu.font: Cozette:pixelsize=13:antialias=false:autohint=false
 dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
-! dmenu.font: cherry:pixelsize=13:antialias=false:autohint=false
-! dmenu.font: CtrlD:pixelsize=13:antialias=false:autohint=false
-! dmenu.font: curie:pixelsize=16:antialias=false:autohint=false
 
 ! dmenu suckless theme
 ! dmenu.normbg: #222222
@@ -56,22 +68,26 @@ dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
 ! dmenu.outfg: #00ffff
 
 ! dmenu neovim theme
-dmenu.normbg: #14161b
-dmenu.normfg: #c4c6cd
-dmenu.selbg: #b3f6c0
-dmenu.selfg: #2c2e33
-dmenu.outbg: #07080d
-dmenu.outfg: #8cf8f7
+! dmenu.normbg: #14161b
+! dmenu.normfg: #c4c6cd
+! dmenu.selbg: #b3f6c0
+! dmenu.selfg: #2c2e33
+! dmenu.outbg: #07080d
+! dmenu.outfg: #8cf8f7
+
+! dmenu dracula theme
+dmenu.normbg: #282a36
+dmenu.normfg: #f8f8f2
+dmenu.selbg: #44475a
+dmenu.selfg: #f8f8f2
+dmenu.outbg: #282a36
+dmenu.outfg: #f8f8f2
 
 ! st config
-st.borderpx: 12
+st.borderpx: 24
 st.cwscale: 1.0
-st.chscale: 1.0
-! st.font: Cozette:pixelsize=13:antialias=false:autohint=false
+st.chscale: 1.1
 st.font: Terminus:pixelsize=12:antialias=false:autohint=false
-! st.font: cherry:pixelsize=13:antialias=false:autohint=false
-! st.font: CtrlD:pixelsize=13:antialias=false:autohint=false
-! st.font: curie:pixelsize=16:antialias=false:autohint=false
 
 ! st suckless theme
 ! st.normblack: black
@@ -96,26 +112,48 @@ st.font: Terminus:pixelsize=12:antialias=false:autohint=false
 ! st.defbg: black
 
 ! st neovim theme
-st.normblack: #2c2e33
-st.normred: #ffc0b9
-st.normgreen: #b4f6c0
-st.normyellow: #fce094
-st.normblue: #a6dbff
-st.normmagenta: #ffcaff
-st.normcyan: #8cf8f7
-st.normwhite: #c4c6cd
-st.briblack: #2c2e33
-st.brired: #ffc0b9
-st.brigreen: #b4f6c0
-st.briyellow: #fce094
-st.briblue: #a6dbff
-st.brimagenta: #ffcaff
-st.bricyan: #8cf8f7
-st.briwhite: #c4c6cd
-st.defcs: #9b9ea4
-st.defrcs: #4f5258
-st.deffg: #eef1f8
-st.defbg: #14161b
+! st.normblack: #2c2e33
+! st.normred: #ffc0b9
+! st.normgreen: #b4f6c0
+! st.normyellow: #fce094
+! st.normblue: #a6dbff
+! st.normmagenta: #ffcaff
+! st.normcyan: #8cf8f7
+! st.normwhite: #c4c6cd
+! st.briblack: #2c2e33
+! st.brired: #ffc0b9
+! st.brigreen: #b4f6c0
+! st.briyellow: #fce094
+! st.briblue: #a6dbff
+! st.brimagenta: #ffcaff
+! st.bricyan: #8cf8f7
+! st.briwhite: #c4c6cd
+! st.defcs: #9b9ea4
+! st.defrcs: #4f5258
+! st.deffg: #eef1f8
+! st.defbg: #14161b
+
+! st dracula theme
+st.normblack: #21222c
+st.normred: #ff5555
+st.normgreen: #50fa7b
+st.normyellow: #f1fa8c
+st.normblue: #bd93f9
+st.normmagenta: #ff79c6
+st.normcyan: #8be9fd
+st.normwhite: #f8f8f2
+st.briblack: #6272a4
+st.brired: #ff6e6e
+st.brigreen: #69ff94
+st.briyellow: #ffffa5
+st.briblue: #d6acff
+st.brimagenta: #ff92df
+st.bricyan: #a4ffff
+st.briwhite: #ffffff
+st.defcs: #f8f8f2
+st.defrcs: #21222c
+st.deffg: #f8f8f2
+st.defbg: #21222c
 
 ! slock suckless theme
 ! slock.defbg: black
@@ -123,6 +161,11 @@ st.defbg: #14161b
 ! slock.errbg: #CC3333
 
 ! slock neovim theme
-slock.defbg: #14161b
-slock.inpbg: #b4f6c0
-slock.errbg: #ffc0b9
+! slock.defbg: #14161b
+! slock.inpbg: #b4f6c0
+! slock.errbg: #ffc0b9
+
+! slock dracula theme
+slock.defbg: #282a36
+slock.inpbg: #bd93f9
+slock.errbg: #ff5555

@@ -1,0 +1,2 @@
+event=ACPI0003:00
+action=pkill -RTMIN+2 dsblocks
