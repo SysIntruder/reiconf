@@ -32,7 +32,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-feh --bg-scale $HOME/.local/share/backgrounds/wallpaper.png;
+# exec i3
+
+hsetroot -center $HOME/.local/share/backgrounds/wallpaper.png;
 tmux a -t default || tmux new -s default -d &
 $HOME/bin/dmenupolkit.sh &
 $HOME/bin/pray_woi.sh &
