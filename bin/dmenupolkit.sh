@@ -7,7 +7,7 @@ while read -r msg; do
     message="$(printf '%s' "$msg" | jq -rc '.message // "No message given!"')"
 
     # Request a password prompt from dmenu
-    response=$(echo "$message" | dmenu -p "Password:" -nf "#222222")
+    response=$(echo "$message" | dmenu -P -p "Password:")
 
     # Cancel authentication if no password was given, otherwise respond with given password
     if [ -z "$response" ] || [ "$response" = "$message" ]; then
