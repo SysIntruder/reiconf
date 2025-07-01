@@ -1,0 +1,124 @@
+" vim: filetype=vifm :
+" ------------------------------------------------------------------------------
+" Main settings
+" ------------------------------------------------------------------------------
+set vicmd=nvim
+set runexec
+
+set nofollowlinks
+set syscalls
+set trash
+
+set vifminfo=bmarks,bookmarks,cs,tabs,tui
+set history=100
+set undolevels=100
+
+set wildmenu
+set wildstyle=popup
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+
+set ignorecase
+set smartcase
+
+set nohlsearch
+set incsearch
+
+set statusline="  Hint: %z%= %A %15s %20d  "
+set timefmt='%Y-%m-%d %H:%M:%S'
+set dotfiles
+set rnu
+set scrolloff=4
+set vimhelp
+set sortnumbers
+
+if system("find --version | grep -c 'GNU findutils'") != 0
+    set findprg='find %s %a -print , -type d \( ! -readable -o ! -executable \) -prune'
+endif
+set grepprg="grep -n -H -I -r -s %i %a %s"
+
+colorscheme Dracula
+
+" ------------------------------------------------------------------------------
+" Bookmarks
+" ------------------------------------------------------------------------------
+
+mark b ~/bin/
+mark h ~/
+
+" ------------------------------------------------------------------------------
+" Commands
+" ------------------------------------------------------------------------------
+
+" These are some of the macros that can be used in the action part:
+"  %a for user arguments
+"  %c for current file under the cursor
+"  %C for current file under the cursor of inactive pane
+"  %f for selected file(s)
+"  %F for selected file(s) of inactive pane
+"  %b is the same as %f %F
+"  %d for current directory name
+"  %D for current directory name of inactive pane
+"  %r{x} for list of files in register {x}
+"  %m runs the command in a menu window
+"  %u uses command's output to build a file list
+
+command! df df -h %m 2> /dev/null
+command! diff vim -d %f %F
+command! zip zip -r %c.zip %f
+command! run !! ./%f
+command! make !!make %a
+command! mkcd :mkdir %a | cd %a
+command! vgrep vim "+grep %a"
+command! reload :write | restart full
+
+" ------------------------------------------------------------------------------
+" File handlers and previewers
+" ------------------------------------------------------------------------------
+
+filetype * xdg-open
+
+" ------------------------------------------------------------------------------
+" Sample keyboard mappings
+" ------------------------------------------------------------------------------
+
+nnoremap s :shell<cr>
+nnoremap S :sort<cr>
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+nnoremap gb :file &<cr>l
+
+if $DISPLAY != ''
+    if executable('xclip')
+        nnoremap yd :!echo -n %d | xclip -selection clipboard %i<cr>
+        nnoremap yf :!echo -n %c:p | xclip -selection clipboard %i<cr>
+    endif
+endif
+
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+nnoremap ,t :!$TERMINAL &<cr>
+nnoremap ,c :write | edit $MYVIFMRC | restart full<cr>
+nnoremap ,w :set wrap!<cr>
+
+nnoremap <f3> :!less %f<cr>
+nnoremap <f4> :edit<cr>
+nnoremap <f5> :copy<cr>
+nnoremap <f6> :move<cr>
+nnoremap <f7> :mkdir<space>
+nnoremap <f8> :delete<cr>
+
+" ------------------------------------------------------------------------------
+" Panel configuration examples
+" ------------------------------------------------------------------------------
+
+set fillchars=vborder:│
+
+" ------------------------------------------------------------------------------
+" Various customization examples
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Icon decorations example
+" ------------------------------------------------------------------------------

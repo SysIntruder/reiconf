@@ -1,11 +1,12 @@
 [global]
-    follow = mouse
-    width = (0, 300)
+    follow = none
+    width = (0, 400)
     origin = top-right
-    offset = (12, 48)
+    offset = (13, 49)
     frame_width = 0
     padding = 12
     font = Terminus 9
+    gap_size = 2
     hide_duplicate_count = true
     show_indicators = no
     icon_position = off
