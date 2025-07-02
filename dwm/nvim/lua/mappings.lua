@@ -19,21 +19,12 @@ vim.keymap.set({ "i", "n" }, "<C-c>", "<cmd>noh<CR><esc>", { desc = "Escape and 
 
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
-vim.keymap.set("n", "<leader>t", "<cmd>$tabnew<CR>", { desc = "New tab" })
+vim.keymap.set("n", "<leader>t", "<cmd>tab split<CR>", { desc = "New tab with current buffer" })
 vim.keymap.set("n", "[[", "<cmd>tabp<CR>", { desc = "Prev tab" })
 vim.keymap.set("n", "]]", "<cmd>tabn<CR>", { desc = "Next tab" })
 
 vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Prev quickfix" })
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Next quickfix" })
-
-vim.keymap.set("n", "<leader><CR>", "<cmd>$tabnew<CR><cmd>te<CR>", { desc = "New tab terminal" })
-vim.keymap.set("n", "<leader>S", "<C-w>s<cmd>te<CR>", { desc = "New split terminal" })
-vim.keymap.set("n", "<leader>V", "<C-w>v<cmd>te<CR>", { desc = "New vertical terminal" })
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal navigate left" })
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal navigate down" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal navigate up" })
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal navigate right" })
-vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 local function between_pairs()
 	local l = vim.fn.getline(".")
