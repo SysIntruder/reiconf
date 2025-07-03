@@ -1,0 +1,52 @@
+HOW TO REINSTALL EFI GRUB
+=========================
+
+1. Boot into live USB
+2. View disk information
+
+
+  lsblk -f
+
+3. Check FAT32/VFAT for EFI
+
+
+  mkdir -p /mnt/efi
+  mount /dev/nvme0n1p1 /mnt/efi
+  ls /mnt/efi
+
+  if it's contain your grub boot list, it's the EFI
+
+  umount /mnt/efi
+
+4. If BTRFS
+
+
+  mount -o subvol=@ /dev/nvme0n1p4 /mnt
+  mkdir -p /mnt/{boot,boot/efi}
+  mount /dev/nvme0n1p1 /mnt/boot/efi
+
+  mount --bind /dev /mnt/dev
+  mount --bind /proc /mnt/proc
+  mount --bind /sys /mnt/sys
+  mount -t efivarfs efivarfs /mnt/sys/firmware/efivars
+
+5. Chroot
+
+  
+  chroot /mnt
+
+  if you wanted to use other shell
+
+  chroot /mnt /usr/bin/bash
+
+6. Reinstall GRUB
+
+
+  grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+  grub-mkconfig -o /boot/grub/grub.cfg
+
+7. Reboot
+
+
+  exit
+  reboot
