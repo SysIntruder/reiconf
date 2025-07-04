@@ -1,0 +1,40 @@
+HOW TO SETUP AMD
+================
+
+1. set module parameter
+
+
+  sudo modprobe amdgpu radeon.si_support=0 amdgpu.si_support=1
+  sudo modprobe radeon radeon.cik_support=0 amdgpu.cik_support=0
+
+2. append kernel parameter into /etc/default/grub
+
+
+  GRUB_CMDLINE_LINUX_DEFAULT="<your_kerner_parameter> radeon.cik_support=0 amdgpu.cik_support=0 radeon.si_support=0 amdgpu.si_support=1"
+
+3. create amdgpu module config
+
+
+  nvim /etc/modprobe.d/amdgpu.conf
+
+  add following line
+
+  options amdgpu si_support=1
+  options amdgpu cik_support=0
+
+4. create radeon module config
+
+
+  nvim /etc/modprobe.d/radeon.conf
+
+  add following line
+
+  options radeon si_support=0
+  options radeon cik_support=0
+
+5. rebuild
+
+
+  sudo mkinitcpio -P
+
+6. restart
