@@ -39,5 +39,5 @@ tmux a -t default || tmux new -s default -d &
 $HOME/bin/dmenupolkit.sh &
 $HOME/bin/pray_woi.sh &
 dsblocks &
-picom &
+picom -b
 exec dwm
