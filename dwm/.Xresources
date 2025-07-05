@@ -19,7 +19,7 @@ dwm.nmaster: 1
 dwm.resizehints: 0
 dwm.lockfullscreen: 1
 dwm.statusbar: dsblocks
-dwm.centeredtitle: 0
+dwm.centeredtitle: 1
 dwm.borderpx: 0
 dwm.gappx: 12
 dwm.vertpad: 12
@@ -27,6 +27,12 @@ dwm.sidepad: 12
 dwm.horizpadbar: 12
 dwm.vertpadbar: 12
 dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! dwm.gappx: 14
+! dwm.vertpad: 14
+! dwm.sidepad: 14
+! dwm.horizpadbar: 14
+! dwm.vertpadbar: 14
+! dwm.font: Fixedsys Excelsior:pixelsize=14:antialias=true:autohint=false
 
 ! dwm suckless theme
 ! dwm.normbg: #222222
@@ -58,6 +64,10 @@ dmenu.vertpad: 12
 dmenu.sidepad: 12
 dmenu.user_bh: 12
 dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! dmenu.vertpad: 14
+! dmenu.sidepad: 14
+! dmenu.user_bh: 14
+! dmenu.font: Fixedsys Excelsior:pixelsize=14:antialias=true:autohint=false
 
 ! dmenu suckless theme
 ! dmenu.normbg: #222222
@@ -88,6 +98,10 @@ st.borderpx: 24
 st.cwscale: 1.0
 st.chscale: 1.1
 st.font: Terminus:pixelsize=12:antialias=false:autohint=false
+! st.borderpx: 28
+! st.cwscale: 1.0
+! st.chscale: 1.0
+! st.font: Fixedsys Excelsior:pixelsize=14:antialias=true:autohint=false
 
 ! st suckless theme
 ! st.normblack: black
@@ -153,7 +167,7 @@ st.briwhite: #ffffff
 st.defcs: #f8f8f2
 st.defrcs: #21222c
 st.deffg: #f8f8f2
-st.defbg: #21222c
+st.defbg: #282a36
 
 ! slock suckless theme
 ! slock.defbg: black
@@ -167,5 +181,5 @@ st.defbg: #21222c
 
 ! slock dracula theme
 slock.defbg: #282a36
-slock.inpbg: #bd93f9
-slock.errbg: #ff5555
+slock.inpbg: #44475a
+slock.errbg: #21222c
