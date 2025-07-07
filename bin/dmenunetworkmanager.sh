@@ -10,6 +10,7 @@ get_wifi() {
  fi
 
  nmcli -t -f IN-USE,SSID,SIGNAL dev wifi list --rescan "$1" |
+   grep -Ev '::' |
    sort -t: -k1,1r -k3,3nr -k2,2 |
    sed -E 's/^\*:? *([^:]+):([0-9]+)/* \1 (\2%)/; s/^ ?:? *([^:]+):([0-9]+)/  \1 (\2%)/'
 }
