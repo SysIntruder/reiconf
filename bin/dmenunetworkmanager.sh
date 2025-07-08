@@ -56,7 +56,7 @@ handle() {
         notify-send "$ssid successfully activated"
       else
         pass=$(dmenu -P -p "Password for $ssid")
-        nmcli device wifi connect "$ssid" password "$pass" && notify-send "$ssid successfully activated" || notify-send "failed on activating $ssid"
+        echo "$pass" | nmcli device wifi connect "$ssid" --ask && notify-send "$ssid successfully activated" || notify-send "failed on activating $ssid"
       fi
     fi
   fi
