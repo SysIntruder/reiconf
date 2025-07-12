@@ -39,5 +39,6 @@ tmux a -t default || tmux new -s default -d &
 $HOME/bin/dmenupolkit.sh &
 $HOME/bin/pray_woi.sh &
 dsblocks &
+(sleep 1; pkill -RTMIN+4 dsblocks && pkill -RTMIN+5 dsblocks) &
 picom -b
 exec dwm
