@@ -21,14 +21,21 @@ HOW TO REINSTALL EFI GRUB
 4. If BTRFS
 
 
-  mount -o subvol=@ /dev/nvme0n1p4 /mnt
+  mount -t btrfs -o subvol=@ /dev/nvme0n1p4 /mnt
+
+  if not encrypted(?)
+
+  mount -t btrfs -o subvol=root /dev/nvme0n1p4 /mnt
+
+
   mkdir -p /mnt/{boot,boot/efi}
   mount /dev/nvme0n1p1 /mnt/boot/efi
 
   mount --bind /dev /mnt/dev
   mount --bind /proc /mnt/proc
   mount --bind /sys /mnt/sys
-  mount -t efivarfs efivarfs /mnt/sys/firmware/efivars
+  mount --bind /run /mnt/run
+  mount -t efivarfs efivarfs /mnt/sys/firmware/efi/efivars
 
 5. Chroot
 

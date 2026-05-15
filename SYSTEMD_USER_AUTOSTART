@@ -1,0 +1,53 @@
+SYSTEMD AUTOSTART
+=================
+
+source: https://github.com/jceb/dex
+
+1. Create systemd user dir
+
+
+mkdir -p ~/.config/systemd/user
+
+
+2. Create autostart target
+
+
+touch ~/.config/systemd/user/autostart.target
+
+
+3. Edit autostart with following
+
+
+[Unit]
+Description=Current graphical user session
+Documentation=man:systemd.special(7)
+RefuseManualStart=no
+StopWhenUnneeded=no
+
+
+4. Create service file
+
+
+touch ~/.config/systemd/user/<service>.service
+
+
+3. Edit service with following
+
+
+[Unit]
+Description=<service description>
+
+[Service]
+ExecStart=<path to the executable> [<parameters>]
+
+
+4. Register the service
+
+
+systemctl --user add-wants autostart.target <service>.service
+
+
+5. Add following into .xinitrc
+
+
+systemctl --user start autostart.target
