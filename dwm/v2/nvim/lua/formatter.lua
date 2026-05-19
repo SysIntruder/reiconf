@@ -31,12 +31,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 		local old_lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
 		local stdin = table.concat(old_lines, "\n")
+		vim.opt.busy = 1
 
 		vim.system(cmd, {
 			stdin = stdin,
 			text = true,
 		}, function(obj)
 			if obj.code ~= 0 or not obj.stdout then
+				vim.schedule(function()
+					vim.opt.busy = 0
+				end)
 				return
 			end
 
@@ -44,6 +48,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 			local stdout = table.concat(new_lines, "\n")
 
 			if stdin == stdout then
+				vim.schedule(function()
+					vim.opt.busy = 0
+				end)
 				return
 			end
 
@@ -54,7 +61,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 				vim.bo[args.buf].modified = false
 
 				vim.fn.winrestview(view)
+				vim.opt.busy = 0
 			end)
 		end)
 	end,
 })
+

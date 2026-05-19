@@ -25,3 +25,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("CmdlineChanged", {
+	pattern = ":",
+	group = vim.api.nvim_create_augroup("TriggerWildmenu", {}),
+	callback = function()
+		local cmd = vim.fn.getcmdline()
+		if cmd:match("%s$") then
+			return
+		end
+		local last = cmd:match("([^%s]+)$") or ""
+		if #last < 4 then
+			return
+		end
+		vim.fn.wildtrigger()
+	end,
+})
+
