@@ -1,0 +1,31 @@
+[global]
+    follow = none
+    width = (0, 300)
+    origin = top-right
+    offset = (6, 26)
+    frame_width = 0
+    padding = 6
+    font = Pixel Operator Mono 12
+    gap_size = 6
+    hide_duplicate_count = true
+    show_indicators = no
+    icon_position = off
+    min_icon_size = 0
+    max_icon_size = 0
+    sticky_history = yes
+    history_length = 50
+
+[urgency_low]
+    background = "#2c2e33"
+    foreground = "#E0E2EA"
+    timeout = 5
+
+[urgency_normal]
+    background = "#2c2e33"
+    foreground = "#E0E2EA"
+    timeout = 5
+
+[urgency_critical]
+    background = "#590008"
+    foreground = "#eef1f8"
+    timeout = 120

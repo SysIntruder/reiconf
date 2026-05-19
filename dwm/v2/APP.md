@@ -100,9 +100,12 @@ pnpm uses hashing, will be differ in each installation
 
 location: $HOME/.local/share/pnpm/global/<pnpm_version>
 ```
-- pnpm                              : 2240-19e2f070543
-    - node                          : 23c4-19e2f0958b4
-    - @vue/language-server          : 5fe-19e341b63c1
-    - @vtsls/language-server        : bc8-19e34241a35
-    - @tailwindcss/language-server  : c10-19e34248a34
-    - eslint_d                      : d16-19e3425f795
+- pnpm
+    - node
+    - @vue/language-server
+    - @vue/typescript-plugin
+    - typescript
+    - @vtsls/language-server
+    - @tailwindcss/language-server
+    - eslint_d
+    - serve

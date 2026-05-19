@@ -1,0 +1,8 @@
+gui:
+  border: single
+  theme:
+    selectedLineBgColor:
+      - reverse
+git:
+  log:
+    showGraph: never

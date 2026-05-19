@@ -1,0 +1,2 @@
+event=jack/(headphone|microphone)
+action=pkill -RTMIN+4 dsblocks && pkill -RTMIN+5 dsblocks

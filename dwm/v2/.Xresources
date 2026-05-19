@@ -1,0 +1,240 @@
+! nsxiv
+! Nsxiv.window.background: #000000
+! Nsxiv.window.foreground: #FFFFFF
+
+! nsxiv neovim theme
+Nsxiv.window.background: #14161B
+Nsxiv.window.foreground: #C4C6CD
+
+! nsxiv dracula theme
+! Nsxiv.window.background: #282A36
+! Nsxiv.window.foreground: #F8F8F2
+
+! nsxiv catppuccin theme
+! Nsxiv.window.background: #1E1E2E
+! Nsxiv.window.foreground: #CDD6F4
+
+! dwm config
+dwm.snap: 0
+dwm.showbar: 1
+dwm.topbar: 1
+dwm.mfact: 0.55
+dwm.nmaster: 1
+dwm.resizehints: 0
+dwm.lockfullscreen: 1
+dwm.statusbar: dsblocks
+dwm.centeredtitle: 1
+dwm.borderpx: 0
+! dwm.gappx: 12
+! dwm.vertpad: 12
+! dwm.sidepad: 12
+! dwm.horizpadbar: 12
+! dwm.vertpadbar: 12
+! dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
+dwm.gappx: 0
+dwm.vertpad: 0
+dwm.sidepad: 0
+dwm.horizpadbar: 5
+dwm.vertpadbar: 5
+dwm.font: Pixel Operator Mono:pixelsize=16:antialias=true:autohint=false
+
+! dwm suckless theme
+! dwm.normbg: #222222
+! dwm.normborder: #444444
+! dwm.normfg: #BBBBBB
+! dwm.selfg: #EEEEEE
+! dwm.selbg: #005577
+! dwm.urgbg: #CC3333
+
+! dwm neovim theme
+dwm.normbg: #14161B
+dwm.normborder: #14161B
+dwm.normfg: #C4C6CD
+dwm.selfg: #E0E2EA
+dwm.selbg: #2C2E33
+dwm.urgbg: #590008
+
+! dwm dracula theme
+! dwm.normbg: #282A36
+! dwm.normborder: #282A36
+! dwm.normfg: #F8F8F2
+! dwm.selfg: #F8F8F2
+! dwm.selbg: #44475A
+! dwm.urgbg: #FF5555
+
+! dwm catppuccin theme
+! dwm.normbg: #1E1E2E
+! dwm.normborder: #1E1E2E
+! dwm.normfg: #CDD6F4
+! dwm.selfg: #CDD6F4
+! dwm.selbg: #313244
+! dwm.urgbg: #F38BA8
+
+! dmenu config
+dmenu.topbar: 1
+! dmenu.vertpad: 12
+! dmenu.sidepad: 12
+! dmenu.user_bh: 12
+! dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
+dmenu.vertpad: 0
+dmenu.sidepad: 0
+dmenu.user_bh: 5
+dmenu.font: Pixel Operator Mono:pixelsize=16:antialias=true:autohint=false
+
+! dmenu suckless theme
+! dmenu.normbg: #222222
+! dmenu.normfg: #BBBBBB
+! dmenu.selbg: #005577
+! dmenu.selfg: #EEEEEE
+! dmenu.outbg: #000000
+! dmenu.outfg: #00FFFF
+
+! dmenu neovim theme
+dmenu.normbg: #14161B
+dmenu.normfg: #C4C6CD
+dmenu.selbg: #2C2E33
+dmenu.selfg: #E0E2EA
+dmenu.outbg: #07080d
+dmenu.outfg: #007373
+
+! dmenu dracula theme
+! dmenu.normbg: #282A36
+! dmenu.normfg: #F8F8F2
+! dmenu.selbg: #44475A
+! dmenu.selfg: #F8F8F2
+! dmenu.outbg: #282A36
+! dmenu.outfg: #f8f8f2
+
+! dmenu catppuccin theme
+! dmenu.normbg: #1E1E2E
+! dmenu.normfg: #CDD6F4
+! dmenu.selbg: #313244
+! dmenu.selfg: #CDD6F4
+! dmenu.outbg: #1E1E2E
+! dmenu.outfg: #CDD6F4
+
+! st config
+! st.borderpx: 24
+! st.cwscale: 1.0
+! st.chscale: 1.1
+! st.font: Terminus:pixelsize=12:antialias=false:autohint=false
+st.borderpx: 5
+st.cwscale: 1.0
+st.chscale: 1.0
+st.font: Pixel Operator Mono:pixelsize=16:antialias=false:autohint=false
+
+! st suckless theme
+! st.normblack: black
+! st.normred: red3
+! st.normgreen: green3
+! st.normyellow: yellow3
+! st.normblue: blue2
+! st.normmagenta: magenta3
+! st.normcyan: cyan3
+! st.normwhite: gray90
+! st.briblack: gray50
+! st.brired: red
+! st.brigreen: green
+! st.briyellow: yellow
+! st.briblue: #5c5cff
+! st.brimagenta: magenta
+! st.bricyan: cyan
+! st.briwhite: white
+! st.defcs: #cccccc
+! st.defrcs: #555555
+! st.deffg: gray90
+! st.defbg: black
+
+! st neovim theme
+! st.normblack: #2C2E33
+! st.normred: #590008
+! st.normgreen: #005523
+! st.normyellow: #6B5300
+! st.normblue: #004C73
+! st.normmagenta: #470045
+! st.normcyan: #007373
+! st.normwhite: #C4C6CD
+st.normblack: #4F5258
+st.normred: #FFC0B9
+st.normgreen: #B4F6C0
+st.normyellow: #FCE094
+st.normblue: #A6DBFF
+st.normmagenta: #FFCAFF
+st.normcyan: #8CF8F7
+st.normwhite: #E0E2EA
+st.briblack: #4F5258
+st.brired: #FFC0B9
+st.brigreen: #B4F6C0
+st.briyellow: #FCE094
+st.briblue: #A6DBFF
+st.brimagenta: #FFCAFF
+st.bricyan: #8CF8F7
+st.briwhite: #E0E2EA
+st.defcs: #9B9EA4
+st.defrcs: #4F5258
+st.deffg: #EEF1F8
+st.defbg: #14161B
+
+! st dracula theme
+! st.normblack: #21222C
+! st.normred: #FF5555
+! st.normgreen: #50FA7B
+! st.normyellow: #F1FA8C
+! st.normblue: #BD93F9
+! st.normmagenta: #FF79C6
+! st.normcyan: #8BE9FD
+! st.normwhite: #F8F8F2
+! st.briblack: #6272A4
+! st.brired: #FF6E6E
+! st.brigreen: #69FF94
+! st.briyellow: #FFFFA5
+! st.briblue: #D6ACFF
+! st.brimagenta: #FF92DF
+! st.bricyan: #A4FFFF
+! st.briwhite: #FFFFFF
+! st.defcs: #F8F8F2
+! st.defrcs: #21222C
+! st.deffg: #F8F8F2
+! st.defbg: #282a36
+
+! st catppuccin theme
+! st.normblack: #45475A
+! st.normred: #F38BA8
+! st.normgreen: #A6E3A1
+! st.normyellow: #F9E2AF
+! st.normblue: #89B4FA
+! st.normmagenta: #F5C2E7
+! st.normcyan: #94E2D5
+! st.normwhite: #BAC2DE
+! st.briblack: #585B70
+! st.brired: #F38BA8
+! st.brigreen: #A6E3A1
+! st.briyellow: #F9E2AF
+! st.briblue: #89B4FA
+! st.brimagenta: #F5C2E7
+! st.bricyan: #94E2D5
+! st.briwhite: #A6ADC8
+! st.defcs: #BAC2DE
+! st.defrcs: #BAC2DE
+! st.deffg: #CDD6F4
+! st.defbg: #1E1E2E
+
+! slock suckless theme
+! slock.defbg: black
+! slock.inpbg: #005577
+! slock.errbg: #CC3333
+
+! slock neovim theme
+slock.defbg: #14161B
+slock.inpbg: #005523
+slock.errbg: #590008
+
+! slock dracula theme
+! slock.defbg: #282A36
+! slock.inpbg: #44475A
+! slock.errbg: #21222C
+
+! slock catppuccin theme
+! slock.defbg: #1E1E2E
+! slock.inpbg: #313244
+! slock.errbg: #45475A

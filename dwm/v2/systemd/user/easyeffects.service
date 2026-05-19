@@ -1,0 +1,5 @@
+[Unit]
+Description=Easy Effects Service
+
+[Service]
+ExecStart=easyeffects --hide-window --service-mode
