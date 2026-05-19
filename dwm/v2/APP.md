@@ -30,6 +30,7 @@ Arch Linux
 
 ## Application
 - bash                              : Shell
+- bc                                : Calculator
 - brightnessctl                     : Control backlight
 - dunst                             : Notification
 - firefox-developer-edition         : Browser
