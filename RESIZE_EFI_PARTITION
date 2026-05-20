@@ -1,0 +1,99 @@
+HOW TO RESIZE EFI PARTITION
+===========================
+
+0. original source https://superuser.com/a/1289122
+
+1. Create unallocated disk space
+2. View disk information
+
+
+  lsblk -f
+
+3. Check FAT32/VFAT for EFI
+4. Check if EFI are already mounted on /boot or /boot/efi
+
+
+  ls /boot
+  ls /boot/efi
+
+  mount EFI if not mounted
+
+  mount /dev/nvme0n1p1 /boot/efi
+
+5. Backup EFI content
+
+
+  mkdir $HOME/efi-bak
+  rsync -av /boot/efi/ $HOME/efi-bak
+
+6. Delete and recreate EFI
+
+
+  sudo gdisk /dev/nvme0n1
+
+  list partition
+
+  p
+
+  notice that every listed entry has ordered first and last sector
+  if you see an unordered, that is your unallocated disk space, take note
+  ensure EFI partition number, should be 1
+
+  delete partition
+
+  d
+  <select_EFI_partition_number>
+
+  create new partition
+
+  n
+
+  select partition number
+
+  Enter to use default
+  should be 1
+
+  select first sector
+
+  Enter to use default
+  check if the sector location are matching with the unallocated
+
+  select last sector
+
+  Enter to use default
+  check if the sector location are matching with the unallocated
+
+  enter code for partition
+
+  EF00
+
+  write changes and exit
+
+  w
+
+7. Format EFI partition
+
+
+  partprobe /dev/nvme0n1
+  mkfs.fat -F32 /dev/nvme0n1p1
+
+8. Restore EFI content
+
+
+  mount /dev/nvme0n1p1 /boot/efi
+  rsync -av $HOME/efi-bak/ /boot/efi
+
+9. Update fstab
+
+
+  blkid | grep EFI
+  vim /etc/fstab
+
+  replace the UUID
+
+  UUID=XXXX-XXXX /boot vfat umask=0077 0 2
+
+10. Update grub
+
+
+  sudo grub-mkconfig -o /boot/grub/grub.cfg

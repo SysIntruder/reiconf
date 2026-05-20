@@ -1,0 +1,9 @@
+HOW TO CREATE PATCH
+===================
+
+1. Make sure git installed
+2. Edit the project
+3. Use git diff to generate patch
+
+
+  git diff > <patch_name>.patch

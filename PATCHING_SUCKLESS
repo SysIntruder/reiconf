@@ -1,0 +1,18 @@
+HOW TO PATCH SUCKLESS
+=====================
+
+1. Test Patch
+
+
+  patch --dry-run <patch_file>
+
+2. Apply Patch
+
+
+  patch <patch_file>
+
+3. Apply manually changes inside .rej file
+4. Clean Up
+
+
+  rm -rf *.orig *.rej
