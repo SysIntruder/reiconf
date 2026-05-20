@@ -1,0 +1,69 @@
+#! /bin/sh
+
+# based on dmenu-desktoponly patch and i3-dmenu-desktop
+#
+# command used:
+# - dmenu
+# - stest
+# - ripgrep
+# - sort
+# - gtk-launch
+
+dirs="
+$HOME/.local/share/applications
+/usr/local/share/applications
+/usr/share/applications
+"
+inclusion="
+org.pulseaudio.pavucontrol.desktop
+"
+# regex
+exclusion="mimeinfo\.cache|com\.zamaudio"
+files=()
+
+# get an array of files from the dirs
+while IFS= read -r dir; do
+  [[ -z $dir ]] && continue
+  files+=("$dir"/*)
+done <<< "$dirs"
+
+declare -A apps
+result=""
+
+while IFS= read -r filename; do
+  [[ -z filename ]] && continue
+
+  name=""
+  terminal=""
+
+  while IFS= read -r lines; do
+    case "$lines" in
+      Name=*)
+        [[ -z $name ]] && name=${lines#Name=}
+        ;;
+      Terminal=*)
+        terminal=${lines#Terminal=}
+        ;;
+    esac
+  done < "$filename"
+
+  # (##) match longest matching pattern (*/) and remove it
+  # /usr/share/applications/htop.desktop > htop.desktop
+  file="${filename##*/}"
+
+  if [[ -n $name
+    && ($terminal == false
+      # find exact match of $file
+      # (*) wildcard
+      # ($'\n') escaped newline char
+      || $inclusion == *$'\n'"$file"$'\n'*
+    )
+  ]]; then
+    apps["$name"]="$file"
+    result+="$name"$'\n'
+  fi
+done <<< $(stest -fl "${files[@]}" | rg -v $exclusion | sort -u)
+
+# ($@) expand the args individually
+selected=$(echo "$result" | dmenu -i "$@")
+gtk-launch ${apps["$selected"]}
