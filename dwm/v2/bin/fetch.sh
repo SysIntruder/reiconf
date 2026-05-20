@@ -4,8 +4,10 @@ user=$(whoami)
 hostname=$(hostnamectl hostname)
 distro=$(head -n1 /etc/os-release | awk -F"=" '{print $2}' | tr -d '"')
 kernel=$(uname -r)
-ex_pkg=$(pacman -Qe | wc -l)
-pkg=$(pacman -Q | wc -l)
+pkg=$(pacman -Qne | wc -l)
+aur_pkg=$(pacman -Qm | wc -l)
+deps_pkg=$(pacman -Qd | wc -l)
+pnpm_global=$(pn list -g --depth 0 | grep -c '^[├└]')
 shell=$(echo $SHELL | awk -F'/' '{print $NF}')
 if [ "$shell" == "bash" ]; then
   shell=$(bash --version | head -n1 | awk '{gsub(/,/, "", $2); print $2, $4}')
@@ -30,7 +32,8 @@ printf "%s@%s\n" "$user" "$hostname"
 printf "========================================\n"
 printf "DISTRO         : %s\n" "$distro"
 printf "KERNEL         : %s\n" "$kernel"
-printf "PACKAGES       : Expl: %s, Total: %s\n" "$ex_pkg" "$pkg"
+printf "PACKAGES       : (Ex %s) (Aur %s) (Dep %s)\n" "$pkg" "$aur_pkg" "$deps_pkg"
+printf "OTHER PACKAGES : (Pnpm %s)\n" "$pnpm_global"
 printf "SHELL          : %s\n" "$shell"
 printf "TERMINAL       : %s\n" "$terminal"
 printf "WINDOW MANAGER : %s\n" "$xorg_wm"
