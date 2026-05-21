@@ -2,44 +2,36 @@
 
 # based on dmenu-desktoponly patch and i3-dmenu-desktop
 #
-# command used:
-# - dmenu
-# - stest
-# - ripgrep
-# - sort
-# - gtk-launch
+# dependencies
+# - dmenu     (for dmenu, stest)
+# - ripgrep   (for rg)
+# - coreutils (for sort)
+# - gtk3      (for gtk-launch)
 
-dirs="
-$HOME/.local/share/applications
-/usr/local/share/applications
-/usr/share/applications
-"
+dirs="${XDG_DATA_DIRS:-"$HOME/.local/share:/usr/local/share:/usr/share"}"
+exclusion="mimeinfo\.cache|com\.zamaudio|geo.handler" # regex
 inclusion="
 org.pulseaudio.pavucontrol.desktop
 "
-# regex
-exclusion="mimeinfo\.cache|com\.zamaudio"
-files=()
+IFS=:
 
-# get an array of files from the dirs
-while IFS= read -r dir; do
-  [[ -z $dir ]] && continue
-  files+=("$dir"/*)
-done <<< "$dirs"
+for dir in $dirs; do
+  [ -z "$dir" ] && continue
+  dirs="${dirs}:${dir}/applications/*"
+done
+files=$(stest -f $dirs | rg -v $exclusion | sort -u)
 
-declare -A apps
+apps=""
 result=""
-
 while IFS= read -r filename; do
-  [[ -z filename ]] && continue
-
+  [ -z "$filename" ] && continue
   name=""
   terminal=""
 
   while IFS= read -r lines; do
     case "$lines" in
       Name=*)
-        [[ -z $name ]] && name=${lines#Name=}
+        [ -z "$name" ] && name=${lines#Name=}
         ;;
       Terminal=*)
         terminal=${lines#Terminal=}
@@ -50,20 +42,30 @@ while IFS= read -r filename; do
   # (##) match longest matching pattern (*/) and remove it
   # /usr/share/applications/htop.desktop > htop.desktop
   file="${filename##*/}"
-
-  if [[ -n $name
-    && ($terminal == false
-      # find exact match of $file
-      # (*) wildcard
-      # ($'\n') escaped newline char
-      || $inclusion == *$'\n'"$file"$'\n'*
-    )
-  ]]; then
-    apps["$name"]="$file"
-    result+="$name"$'\n'
+  if [ -n "$name" ] &&
+    (
+      [ "$terminal" = false ] ||
+      echo "$inclusion" | rg -F "$file"
+    ); then
+    apps="${apps}${name}:${file}
+" # literally add newline
+    result="${result}${name}
+" # literally add newline
   fi
-done <<< $(stest -fl "${files[@]}" | rg -v $exclusion | sort -u)
+done << EOF
+$files
+EOF
 
 # ($@) expand the args individually
 selected=$(echo "$result" | dmenu -i "$@")
-gtk-launch ${apps["$selected"]}
+target=""
+while IFS=: read -r key value; do
+  if [ "$key" = "$selected" ]; then
+    target="$value"
+    break
+  fi
+done << EOF
+$apps
+EOF
+
+[ -n "$target" ] && gtk-launch "$target"
