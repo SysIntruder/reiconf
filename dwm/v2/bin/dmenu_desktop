@@ -30,12 +30,8 @@ while IFS= read -r filename; do
 
   while IFS= read -r lines; do
     case "$lines" in
-      Name=*)
-        [ -z "$name" ] && name=${lines#Name=}
-        ;;
-      Terminal=*)
-        terminal=${lines#Terminal=}
-        ;;
+      Name=*) [ -z "$name" ] && name=${lines#Name=} ;;
+      Terminal=*) terminal=${lines#Terminal=} ;;
     esac
   done < "$filename"
 
