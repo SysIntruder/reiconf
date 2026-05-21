@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# based on https://github.com/onespaceman/menu-calc
+#
+# dependencies
+# - dmenu     (for dmenu)
+# - bc        (for bc)
+# - coreutils (for echo)
+# - xclip     (for xclip)
+
+answer=$(echo "$@" | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+action=$(printf "Copy to clipboard\nClear\nClose" | dmenu -p "= $answer")
+
+case $action in
+    "Clear") $0 ;;
+    "Copy to clipboard") printf "%s" "$answer" | xclip -selection clipboard ;;
+    "Close") ;;
+    "") ;;
+    *) $0 "$answer $action" ;;
+esac
