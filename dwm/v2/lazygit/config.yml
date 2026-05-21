@@ -6,3 +6,4 @@ gui:
 git:
   log:
     showGraph: never
+notARepository: skip
