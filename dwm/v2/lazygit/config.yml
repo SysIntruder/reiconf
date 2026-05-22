@@ -4,6 +4,7 @@ gui:
     selectedLineBgColor:
       - reverse
 git:
+  overrideGpg: true
   log:
     showGraph: never
 notARepository: skip
