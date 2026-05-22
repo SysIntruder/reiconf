@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# based on https://www.reddit.com/r/linux4noobs/comments/r7m48d/how_to_use_dmenu_as_polkit_agent/
+#
+# dependencies
+# - cmd-polkit-agent (for cmd-polkit-agent)
+# - dmenu            (for dmenu) # require password patch
+# - coreutils        (for echo)
+# - jq               (for jq)
+
+if [ "$1" != "_CALLED_INTERNALLY" ]; then
+	exec cmd-polkit-agent -s -c "\"$0\" _CALLED_INTERNALLY \"\$@\"" sh "$@"
+
+else
+	# Remove $1 "_CALLED_INTERNALLY"
+	shift 1
+
+	while read -r msg; do
+		if echo "$msg" | jq -e ".action == \"request password\"" 1>/dev/null 2>/dev/null; then
+			prompt=$(echo "$msg" | jq -rc ".prompt // \"Password:\"")
+			message=$(echo "$msg" | jq -rc ".message // \"No message given!\"")
+			response=$(echo "$message" | dmenu -P -p "$message. $prompt")
+
+			if [ -z "$response" ]; then
+				echo "{\"action\":\"cancel\"}"
+
+			else
+				echo "{\"action\":\"authenticate\",\"password\": \"$response\"}"
+
+			fi
+		fi
+	done
+fi
