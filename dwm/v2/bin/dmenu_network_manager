@@ -74,6 +74,7 @@ handle() {
 
       else
         notify-send "failed to deactivating $ssid"
+      fi
 
     else
       if nmcli device wifi connect "$ssid"; then
