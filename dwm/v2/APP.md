@@ -18,6 +18,7 @@ Arch Linux
 - power-profiles-daemon             : Manage power
 - sof-firmware                      : Audio
 - sudo
+- udisks2                           : Mount usb
 - vulkan-radeon                     : Graphics
 - wireplumber                       : Audio
 - wpa_supplicant                    : Network
