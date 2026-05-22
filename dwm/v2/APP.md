@@ -62,11 +62,10 @@ Arch Linux
 - bash-completion
 - easyeffects                       : Better sound
 - efibootmgr                        : Manage UEFI boot entries
-- gnu-free-fonts                    : Fonts
+- noto-fonts-cjk                    : CJK Fonts
 - picom                             : Compositor
 - terminus-font                     : Fonts
 - ttf-dejavu                        : Fonts
-- ttf-hanazono                      : CJK Fonts
 - ttf-liberation                    : Fonts
 
 ## Deps
