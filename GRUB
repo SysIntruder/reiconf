@@ -1,0 +1,75 @@
+HOW TO GRUB
+===========
+
+0. Get fs_uuid
+
+
+  Windows:
+
+
+  grub-probe --target=fs_uuid esp/EFI/Microsoft/Boot/bootmgfw.efi
+
+  Linux:
+
+
+  grub-probe --target=fs_uuid esp/EFI/Linux/arch-linux-lts.efi
+
+1. Add windows
+
+
+  sudo nvim /etc/grub.d/40_custom
+
+  add following line
+
+
+  if [ "$grub_platform" = "efi" ]; then
+    menuentry 'Microsoft Windows' --id 'microsoft-windows' {
+      insmod part_gpt
+      insmod fat
+      search --no-floppy --set=root --fs-uuid <YOUR_EFI_UUID>
+      chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+    }
+  fi
+
+  where esp is your EFI system mount location
+
+2. Add UEFI firmware settings
+
+
+  sudo nvim /etc/grub.d/40_custom
+
+  add following line
+
+
+  if [ "$grub_platform" = "efi" ]; then
+    fwsetup --is-supported
+    if [ "$?" = 0 ]; then
+      menuentry 'Custom UEFI Firmware Settings' --id 'uefi-firmware' {
+        fwsetup
+      }
+    fi
+  fi
+
+3. Custom chainload UKI
+  by default UKI entries in GRUB doesn't show difference from one and another
+
+
+  sudo nvim /etc/grub.d/40_custom
+
+  add following line
+
+
+  if [ "$grub_platform" = "efi" ]; then
+    menuentry 'Your Linux' --id 'your-linux' {
+      insmod fat
+      insmod chain
+      search --no-floppy --set=root --fs-uuid <YOUR_EFI_UUID>
+      chainloader /EFI/Linux/<your_linux>.efi
+    }
+  fi
+
+4. Disable script in /etc/grub.d
+
+
+  sudo chmod -x /etc/grub.d/15_uki
+

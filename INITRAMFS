@@ -1,0 +1,23 @@
+HOW TO INITRAMFS
+================
+
+0. Updating initramfs
+
+
+  sudo mkinitcpio -P
+  sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+1. Enable fallback
+
+
+  sudo nvim /etc/mkinitcpio.d/linux-lts.preset
+
+  comment PRESETS=('default')
+  uncomment #PRESETS=('default', 'fallback')
+
+2. Disable splash
+
+
+  sudo nvim /etc/mkinitcpio.d/linux-lts.preset
+
+  comment default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
