@@ -35,7 +35,7 @@ dwm.vertpad: 0
 dwm.sidepad: 0
 dwm.horizpadbar: 5
 dwm.vertpadbar: 5
-dwm.font: Terminus:pixelsize=16:antialias=false:autohint=false
+dwm.font: Terminus:pixelsize=12:antialias=false:autohint=false
 
 ! dwm suckless theme
 ! dwm.normbg: #222222
@@ -77,7 +77,7 @@ dmenu.topbar: 1
 dmenu.vertpad: 0
 dmenu.sidepad: 0
 dmenu.user_bh: 5
-dmenu.font: Terminus:pixelsize=16:antialias=false:autohint=false
+dmenu.font: Terminus:pixelsize=12:antialias=false:autohint=false
 
 ! dmenu suckless theme
 ! dmenu.normbg: #222222
@@ -114,9 +114,9 @@ dmenu.outfg: #007373
 ! st config
 ! st.borderpx: 24
 st.borderpx: 5
-st.cwscale: 1.0
-st.chscale: 1.0
-st.font: Terminus:pixelsize=16:antialias=false:autohint=false
+st.cwscale: 1.1
+st.chscale: 1.1
+st.font: Terminus:pixelsize=12:antialias=false:autohint=false
 
 ! st suckless theme
 ! st.normblack: black
