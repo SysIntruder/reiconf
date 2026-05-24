@@ -7,21 +7,20 @@ Arch Linux
 - amd-ucode                         : Microcode
 - base
 - btrfs-progs                       : Manage BTRFS
+- efibootmgr                        : Manage UEFI boot entries
 - git
-- grub
 - less                              : Pager
 - linux-lts
 - linux-firmware
 - networkmanager
-- os-prober                         : Detect another OS
 - pipewire                          : Audio
-- power-profiles-daemon             : Manage power
+- tlp                               : Manage power
 - sof-firmware                      : Audio
 - sudo
 - udisks2                           : Mount usb
 - vulkan-radeon                     : Graphics
 - wireplumber                       : Audio
-- wpa_supplicant                    : Network
+- wpa_supplicant                    : Wireless backend
 - xf86-video-amdgpu                 : Graphics
 - xf86-video-ati                    : Graphics
 - xorg-server                       : Display server
@@ -44,9 +43,8 @@ Arch Linux
 - pavucontrol                       : Control volume
 - scrot                             : Screenshot
 - tmux                              : Terminal multiplexer
-- ufw                               : Firewall
+- nftables                          : Firewall
 - unzip
-- vifm                              : File manager
 - xclip                             : Copy paste
 - xorg-xkill                        : Kill window
 - xorg-xrandr                       : Display settings
@@ -61,7 +59,6 @@ Arch Linux
 - acpid                             : Listen ACPI events
 - bash-completion
 - easyeffects                       : Better sound
-- efibootmgr                        : Manage UEFI boot entries
 - noto-fonts-cjk                    : CJK Fonts
 - picom                             : Compositor
 - terminus-font                     : Fonts
