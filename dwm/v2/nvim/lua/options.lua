@@ -41,7 +41,6 @@ vim.opt.smartindent = true
 -- Behavior
 vim.opt.clipboard = "unnamedplus"
 vim.opt.confirm = true
-vim.opt.iskeyword:append("-")
 vim.opt.path:append("**")
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -62,4 +61,5 @@ vim.opt.winborder = "single"
 vim.opt.pumborder = "single"
 vim.opt.ruler = false
 vim.opt.laststatus = 3
+vim.opt.showtabline = 2
 
