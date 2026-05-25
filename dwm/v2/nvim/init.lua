@@ -63,6 +63,8 @@ require("diagnostic")
 
 require("paircmp")
 require("session")
+vim.keymap.set("n", "<leader>ss", ":SessionSave<Space><C-z><C-z>", { noremap = true, desc = "Session save" })
+vim.keymap.set("n", "<leader>sl", ":SessionLoad<Space><C-z>", { noremap = true, desc = "Session load" })
 
 require("netrw")
 vim.keymap.set("n", "-", "<cmd>Explore<CR>", { noremap = true, desc = "Netrw" })
