@@ -21,3 +21,17 @@ HOW TO INITRAMFS
   sudo nvim /etc/mkinitcpio.d/linux-lts.preset
 
   comment default_options="--splash /usr/share/systemd/bootctl/splash-arch.bmp"
+
+3. Using systemd as init
+
+
+  sudo nvim /etc/mkinitcpio.d/linux-lts.preset
+
+  add "-A systemd,sd-vconsole -S base,udev,keymap,consolefont" into default_options
+
+4. Minimal initramfs
+
+
+  sudo nvim /etc/mkinitcpio.d/linux-lts.preset
+
+  add "-S keyboard,consolefont,fsck,filesystems" into default_options
