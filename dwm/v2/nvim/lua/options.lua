@@ -21,7 +21,7 @@ vim.opt.complete = "t"
 vim.opt.completeopt = "noselect,noinsert,menu,menuone,popup,fuzzy"
 vim.opt.wildmode = "noselect:lastused,full"
 vim.opt.wildignore:append({ "*png", "*.jpg", "*.ico" })
-vim.opt.wildcharm = "<C-z>"
+vim.opt.wildcharm = vim.fn.char2nr("\26")
 
 -- Fold
 vim.opt.foldmethod = "indent"
