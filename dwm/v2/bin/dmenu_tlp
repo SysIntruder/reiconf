@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# requires single patch
+# https://github.com/SysIntruder/dmenu/blob/patched/patches/dmenu-single-5.3.patch
+#
+# dependencies
+# - dmenu     (for dmenu) # require password patch
+# - systemd   (for systemctl)
+
+inp=$(printf "p:performance\nb:balanced\ns:power-saver" | dmenu -i -s)
+case $inp in
+  p:performance)
+    sudo -A tlp performance
+    ;;
+  b:balanced)
+    sudo -A tlp balanced
+    ;;
+  s:power-saver)
+    sudo -A tlp power-saver
+    ;;
+esac
