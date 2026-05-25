@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# dependencies
+# - dmenu     (for dmenu) # require password patch
+
+dmenu -P -p "$1" <&- && echo
