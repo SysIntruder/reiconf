@@ -49,11 +49,11 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 	unset f
 fi
 
-# xrandr --output eDP --brightness 0.9;
-systemctl --user start autostart.target &
-hsetroot -cover $HOME/.local/share/backgrounds/wallpaper.png &
-tmux a -t default || tmux new -s default -d &
 $HOME/bin/dmenu_polkit &
+systemctl --user start autostart.target &
+xrandr --output eDP --brightness 0.9 &
+hsetroot -solid '#14161B' &
+tmux a -t default || tmux new -s default -d &
 # $HOME/bin/pray_woi &
 dsblocks &
 (sleep 1; pkill -RTMIN+4 dsblocks && pkill -RTMIN+5 dsblocks) &
