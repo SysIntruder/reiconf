@@ -3,6 +3,7 @@ vim.lsp.config("*", {
 		vim.lsp.completion.enable(true, client.id, bufnr, {
 			autotrigger = true,
 		})
+		-- client.server_capabilities.semanticTokensProvider = nil
 	end,
 })
 
@@ -15,7 +16,7 @@ vim.lsp.enable({ "lua_ls", "vtsls", "vue_ls", "tailwindcss" })
 
 vim.keymap.set("n", "grh", function()
 	vim.lsp.buf.hover({
-    border = "single",
-  })
+		border = "single",
+	})
 end, { desc = "LSP hover" })
 

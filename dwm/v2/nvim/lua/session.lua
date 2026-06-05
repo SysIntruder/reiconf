@@ -51,8 +51,15 @@ vim.api.nvim_create_user_command("SessionLoad", function(opts)
 	vim.cmd("source " .. vim.fn.fnameescape(session))
 end, {
 	nargs = 1,
-	complete = function(cmdarg)
-		return vim.fn.systemlist(cmd_fdfzf .. vim.fn.shellescape(cmdarg))
+	complete = function(cmdargs)
+		local name = session_name()
+		local sessions = vim.fn.systemlist(cmd_fdfzf .. vim.fn.shellescape(name))
+
+		if sessions and #sessions == 1 then
+			return sessions
+		else
+			return vim.fn.systemlist(cmd_fdfzf .. vim.fn.shellescape(cmdargs))
+		end
 	end,
 })
 

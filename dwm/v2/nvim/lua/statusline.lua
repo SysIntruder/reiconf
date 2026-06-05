@@ -41,7 +41,9 @@ require("gitsigns").setup({
 	end,
 })
 
-vim.opt.statusline = "[%n] " .. vim.opt.statusline:get() .. "%{%get(b:,'gitsigns_status','')%} %-18.(Ln %l, Col %c%) %y"
+vim.opt.statusline = "[%n] "
+	.. vim.opt.statusline:get()
+	.. "%{%get(b:,'gitsigns_status','')%} %S %-18.(Ln %l, Col %c%) %y"
 vim.api.nvim_set_hl(0, "StatusLine", {
 	bg = "None",
 	ctermbg = "None",

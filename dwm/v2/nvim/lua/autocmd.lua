@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
 			return
 		end
 		local last = cmd:match("([^%s]+)$") or ""
-		if #last < 4 then
+		if #last < 3 then
 			return
 		end
 		vim.fn.wildtrigger()
