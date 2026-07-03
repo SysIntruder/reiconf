@@ -5,21 +5,27 @@
 # dependencies
 # - dmenu     (for dmenu, stest)
 # - ripgrep   (for rg)
-# - coreutils (for sort)
+# - coreutils (for sort, echo)
 # - gtk3      (for gtk-launch)
 
+cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+cache="$cachedir/dmenu_desktop"
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
 dirs="${XDG_DATA_DIRS:-"$HOME/.local/share:/usr/local/share:/usr/share"}"
-exclusion="mimeinfo\.cache|com\.zamaudio|geo.handler" # regex
+exclusion="mimeinfo\.cache|com\.zamaudio|geo-handler|krita_" # regex
 inclusion="
 org.pulseaudio.pavucontrol.desktop
+org.kde.krita.desktop
 "
-IFS=:
 
+IFS=:
 for dir in $dirs; do
   [ -z "$dir" ] && continue
   dirs="${dirs}:${dir}/applications/*"
 done
-files=$(stest -f $dirs | rg -v $exclusion | sort -u)
+files=$(stest -f $dirs | rg -v "$exclusion" | sort -u)
 
 apps=""
 result=""
@@ -30,8 +36,12 @@ while IFS= read -r filename; do
 
   while IFS= read -r lines; do
     case "$lines" in
-      Name=*) [ -z "$name" ] && name=${lines#Name=} ;;
-      Terminal=*) terminal=${lines#Terminal=} ;;
+      Name=*)
+        [ -z "$name" ] && name=${lines#Name=}
+        ;;
+      Terminal=*)
+        terminal=${lines#Terminal=}
+        ;;
     esac
   done < "$filename"
 
