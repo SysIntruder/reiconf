@@ -1,0 +1,9 @@
+MOUNT ANDROID DEVICE
+====================
+
+1. set user_allow_other on /etc/fuse.conf
+
+
+  sudo nvim /etc/fuse.conf
+
+  uncomment user_allow_other
