@@ -11,6 +11,7 @@
 # - nm-connection-editor (for nm-connection-editor)
 
 RESCAN="Rescan WiFi"
+RESET="Reset Interface"
 NETMAN="Open Network Manager"
 rescan="no"
 
@@ -30,12 +31,19 @@ get_vpn() {
    awk -F: '{prefix=($1=="yes")?"*":" "; print prefix " " $2 ":" $3}'
 }
 
+get_interface() {
+  nmcli -t -f DEVICE,TYPE device |
+    awk -F: '$1 != "lo" && ($2 == "ethernet" || $2 == "wifi")' |
+    cut -d: -f1 |
+    dmenu -i -l 25 -p "Interface"
+}
+
 menu() {
   {
     get_wifi "$1"
     printf "\n"
     get_vpn
-    printf "\n%s\n%s" "$RESCAN" "$NETMAN"
+    printf "\n%s\n\n%s\n%s" "$RESCAN" "$RESET" "$NETMAN"
   } | dmenu -i -l 25 -p "Networks"
 }
 
@@ -43,6 +51,16 @@ handle() {
   if [ "$1" = "$RESCAN" ]; then
     rescan="yes"
     return 1
+
+  elif [ "$1" = "$RESET" ]; then
+    device=$(get_interface)
+    if [ -n "$device" ]; then
+      notify-send "Disconnecting $device"
+      nmcli device disconnect "$device"
+      sleep 3
+      notify-send "Reconnecting $device"
+      nmcli device connect "$device"
+    fi
 
   elif [ "$1" = "$NETMAN" ]; then
     nm-connection-editor
@@ -54,7 +72,7 @@ handle() {
         notify-send "$vpn successfully deactivated"
 
       else
-        notify-send "failed to deactivating $vpn"
+        notify-send "Failed to deactivating $vpn"
       fi
 
     else
@@ -62,7 +80,7 @@ handle() {
         notify-send "$vpn successfully activated" 
 
       else
-        notify-send "failed on activating $vpn"
+        notify-send "Failed on activating $vpn"
       fi
     fi
 
@@ -73,7 +91,7 @@ handle() {
         notify-send "$ssid successfully deactivated"
 
       else
-        notify-send "failed to deactivating $ssid"
+        notify-send "Failed to deactivating $ssid"
       fi
 
     else
@@ -86,7 +104,7 @@ handle() {
           notify-send "$ssid successfully activated"
 
         else
-          notify-send "failed on activating $ssid"
+          notify-send "Failed on activating $ssid"
         fi
       fi
     fi
