@@ -16,9 +16,9 @@ vim.opt.synmaxcol = 500
 
 -- Completion
 vim.opt.autocomplete = true
-vim.opt.autocompletedelay = 250
-vim.opt.complete = "t"
-vim.opt.completeopt = "noselect,noinsert,menu,menuone,popup,fuzzy"
+vim.opt.autocompletedelay = 50
+vim.opt.complete = ".^5,w^5,b^5"
+vim.opt.completeopt = "fuzzy,menu,menuone,popup"
 vim.opt.wildmode = "noselect:lastused,full"
 vim.opt.wildignore:append({ "*png", "*.jpg", "*.ico" })
 vim.opt.wildcharm = vim.fn.char2nr("\26")
@@ -45,7 +45,7 @@ vim.opt.confirm = true
 vim.opt.path:append("**")
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.linebreak = true
+vim.opt.wrap = false
 vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -56,6 +56,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
 vim.opt.signcolumn = "yes:2"
 vim.opt.showmatch = true
 vim.opt.winborder = "single"

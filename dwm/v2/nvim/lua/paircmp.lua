@@ -1,4 +1,3 @@
--- TODO use vim.opt.matchpairs for available pairs
 local match_pairs = {
 	['"'] = { closing = '"' },
 	["'"] = { closing = "'" },
@@ -74,9 +73,11 @@ end
 vim.keymap.set("i", "<CR>", function()
 	return pair_newline()
 end, { desc = "Auto indent newline inside pair", expr = true, noremap = true, silent = true })
+
 vim.keymap.set("i", "<BS>", function()
 	return pair_delete()
 end, { desc = "Auto delete empty pair", expr = true, noremap = true, silent = true })
+
 for k, v in pairs(match_pairs) do
 	vim.keymap.set("i", k, function()
 		return pair_close(k)

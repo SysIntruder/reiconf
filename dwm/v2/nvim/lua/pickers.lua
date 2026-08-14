@@ -19,7 +19,7 @@ vim.api.nvim_create_user_command("FindWord", function(opts)
 	if item == "" then
 		return
 	end
-	local file, line, col = item:match("^(.-):(%d+):(%d+):")
+  local file, line, col = item:match("^(.+):(%d+):(%d+):")
 	if file == "" then
 		return
 	end
@@ -31,3 +31,4 @@ end, {
 		return vim.fn.systemlist(cmd_rg .. vim.fn.shellescape(cmdarg))
 	end,
 })
+
