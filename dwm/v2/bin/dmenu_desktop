@@ -18,6 +18,7 @@ exclusion="mimeinfo\.cache|com\.zamaudio|geo-handler|krita_" # regex
 inclusion="
 org.pulseaudio.pavucontrol.desktop
 org.kde.krita.desktop
+org.kde.kdenlive.desktop
 "
 
 IFS=:
