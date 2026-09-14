@@ -16,9 +16,6 @@ cache="$cachedir/dmenu_desktop"
 dirs="${XDG_DATA_DIRS:-"$HOME/.local/share:/usr/local/share:/usr/share"}"
 exclusion="mimeinfo\.cache|com\.zamaudio|geo-handler|krita_" # regex
 inclusion="
-org.pulseaudio.pavucontrol.desktop
-org.kde.krita.desktop
-org.kde.kdenlive.desktop
 "
 
 IFS=:
@@ -34,6 +31,7 @@ while IFS= read -r filename; do
   [ -z "$filename" ] && continue
   name=""
   terminal=""
+  exe=""
 
   while IFS= read -r lines; do
     case "$lines" in
@@ -43,6 +41,9 @@ while IFS= read -r filename; do
       Terminal=*)
         terminal=${lines#Terminal=}
         ;;
+      Exec=*)
+        exe=${lines#Exec=}
+        ;;
     esac
   done < "$filename"
 
@@ -51,7 +52,9 @@ while IFS= read -r filename; do
   file="${filename##*/}"
   if [ -n "$name" ] &&
     (
-      [ "$terminal" = false ] ||
+      (
+        [ "$terminal" != true ] && [ -n "$exe" ]
+      ) ||
       echo "$inclusion" | rg -F "$file"
     ); then
     apps="${apps}${name}:${file}
@@ -62,6 +65,8 @@ while IFS= read -r filename; do
 done << EOF
 $files
 EOF
+
+echo "$apps"
 
 # ($@) expand the args individually
 selected=$(echo "$result" | dmenu -i "$@")
