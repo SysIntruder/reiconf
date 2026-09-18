@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # requires single patch
 # https://github.com/SysIntruder/dmenu/blob/patched/patches/dmenu-single-5.3.patch
@@ -8,11 +8,24 @@
 # - slock     (for slock)
 # - systemd   (for systemctl)
 
-inp=$(printf "s:shutdown\nr:restart\ne:exit\nl:sleep\nk:lock" | dmenu -i -s)
-case $inp in
-  k:lock) slock ;;
-  l:sleep) slock & systemctl suspend ;;
-  e:exit) pkill dwm ;;
-  r:restart) systemctl reboot ;;
-  s:shutdown) systemctl poweroff ;;
+INP=$(printf "s:shutdown\nr:restart\ne:exit\nl:sleep\nk:lock" | dmenu -i -s)
+case $INP in
+  k:lock)
+    slock
+    ;;
+  l:sleep)
+    slock & systemctl suspend
+    ;;
+  e:exit)
+    pkill dwm
+    ;;
+  r:restart)
+    systemctl reboot
+    ;;
+  s:shutdown)
+    systemctl poweroff
+    ;;
+  *)
+    exit 1
+    ;;
 esac

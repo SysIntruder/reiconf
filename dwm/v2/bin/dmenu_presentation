@@ -1,0 +1,70 @@
+#!/bin/sh
+
+# requires single patch
+# https://github.com/SysIntruder/dmenu/blob/patched/patches/dmenu-single-5.3.patch
+#
+# dependencies
+# - dmenu     (for dmenu)
+# - xrandr    (for xrandr)
+# - ripgrep   (for rg)
+# - gawk      (for awk)
+# - hsetroot  (for wallpaper setter)
+
+HDMI_DISPLAY=$(xrandr | rg -F "HDMI")
+HDMI_AUDIO=$(pactl list sinks | grep "Name: hdmi" | awk '{ print $2 }')
+HDMI_NAME=$(echo "$HDMI_DISPLAY" | awk '{ print $1 }')
+HDMI_STATUS=$(echo "$HDMI_DISPLAY" | awk '{ print $2 }')
+
+RES=$(xrandr | rg -F "*" | awk '{ print $1 }')
+WIDTH=${RES%%x*}
+HEIGHT=${RES#*x}
+
+DEFAULT_AUDIO=$(pactl list sinks | grep "Name: alsa" | awk '{ print $2 }')
+CUR_AUDIO=$(pactl get-default-sink)
+
+OPT="p:primary"
+if [ "$HDMI_STATUS" == "connected" ]; then
+  OPT="${OPT}\ns:secondary\nd:duplicate\ne:extend"
+
+  if [ -n "$HDMI_AUDIO" ]; then
+      if [ "$CUR_AUDIO" == "$DEFAULT_AUDIO" ]; then
+        OPT="${OPT}\na:audio-default"
+
+      else
+        OPT="${OPT}\na:audio-hdmi"
+
+      fi
+  fi
+fi
+
+
+INPUT=$(printf "$OPT" | dmenu -i -s -p "Presentation")
+if [ "$INPUT" == "p:primary" ]; then
+  xrandr --output eDP --primary --mode "$RES" --pos 0x0 --rotate normal --output "$HDMI_NAME" --off
+
+elif [ "$HDMI_STATUS" == "connected" ]; then
+  if [ "$INPUT" == "s:secondary" ]; then
+    xrandr --output eDP --off --output "$HDMI_NAME" --primary --mode "$RES" --pos 0x0 --rotate normal
+
+  elif [ "$INPUT" == "d:duplicate" ]; then
+    xrandr --output eDP --primary --mode "$RES" --pos 0x0 --rotate normal --output "$HDMI_NAME" --mode "$RES" --pos 0x0 --rotate normal
+
+  elif [ "$INPUT" == "e:extend" ]; then
+    xrandr --output eDP --primary --mode "$RES" --pos 0x0 --rotate normal --output "$HDMI_NAME" --mode "$RES" --pos "${WIDTH}x0" --rotate normal
+
+  elif [ -n "$HDMI_AUDIO" ]; then
+    if [ "$INPUT" == "a:audio-hdmi" ]; then
+      pactl set-default-sink "HDMI_AUDIO" && pkill -RTMIN+4 dsblocks && pkill -RTMIN+5 dsblocks
+
+    elif [ "$INPUT" == "a:audio-default" ]; then
+      pactl set-default-sink "DEFAULT_AUDIO" && pkill -RTMIN+4 dsblocks && pkill -RTMIN+5 dsblocks
+
+    fi
+
+  fi
+
+else
+  exit 1
+fi
+
+hsetroot -cover "$HOME/.local/share/backgrounds/wallpaper.png"

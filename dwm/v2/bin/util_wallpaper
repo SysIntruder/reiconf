@@ -5,7 +5,7 @@
 # - hsetroot  (for wallpaper setter)
 
 # use Q when exiting nsxiv so nsxiv can print current picture into stdout
-file=$(nsxiv -o "$HOME/Pictures/backgrounds") || exit 1
+file=$(nsxiv -N "Nsxiv Wallpaper Selector" -o "$HOME/Pictures/backgrounds") || exit 1
 [ -n "$file" ] || exit 0
 
 mkdir -p "$HOME/.local/share/backgrounds" || exit 1

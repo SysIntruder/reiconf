@@ -66,8 +66,6 @@ done << EOF
 $files
 EOF
 
-echo "$apps"
-
 # ($@) expand the args individually
 selected=$(echo "$result" | dmenu -i "$@")
 target=""

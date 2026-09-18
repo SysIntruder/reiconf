@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # dependencies
 # - dmenu     (for dmenu)
